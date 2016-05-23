@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'SunLoanDelangIntegration',
+    'DelangIntegrationTest',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -57,6 +58,7 @@ ROOT_URLCONF = 'SunLoan.urls'
 
 TEMPLATE_DIRS = (
     os.path.join(SETTINGS_PATH, 'SunLoanDelangIntegration/templates'),
+    os.path.join(SETTINGS_PATH, 'DelangIntegrationTest/templates'),
 )
 
 TEMPLATES = [
