@@ -1,10 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Customers
 
 @login_required
-@user_passes_test(lambda u: u.groups.filter(name='Student').count() == 0)
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 0)
 
 def index(request):
     customer_list = Customers.objects.order_by('create_date')[:10]
