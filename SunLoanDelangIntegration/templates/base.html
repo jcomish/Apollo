@@ -39,7 +39,20 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("#add").click(function(){
+            $("#main").hide();
+            $("#new_cust").show();
+        });
+        $("#create").click(function(){
+            $("#main").show();
+            $("#new_cust").hide();        });
+    });
+    </script>
+      </head>
 
   <body>
 
@@ -66,9 +79,9 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
+      <div class="container" id="main">
         <p></br>Customer SMS and Email Notification Management System</p>
-        <p><a class="btn btn-primary" href="#" role="button">Add Customer &raquo;</a>
+        <p><a class="btn btn-primary" href="#" role="button" id="add">Add Customer &raquo;</a>
              <form class="form-inline">
               <input type="text" placeholder="Lookup Customer" class="form-control">
             <button type="submit" class="btn btn-primary">Search</button>
@@ -76,6 +89,16 @@
           </form>
           </p>
       </div>
+      <div class="container" id="new_cust" hidden="true">
+        <p></br>Customer SMS and Email Notification Management System</p>
+        <p>ADDING NEW Customer<a class="btn btn-primary" href="#" role="button" id="create">Create Customer &raquo;</a>
+             <form class="form-inline">
+              <input type="text" placeholder="Lookup Customer" class="form-control">
+            <button type="submit" class="btn btn-primary">Search</button>
+
+          </form>
+          </p>
+     </div>
     </div>
 
     <div class="container">
