@@ -55,11 +55,11 @@
       <div class="container" id="main">
         <p></br>Customer SMS and Email Notification Management System Test Suite</p>
         <p><a class="btn btn-primary" href="#" role="button" id="add">Add Customer &raquo;</a>
-             <form class="form-inline">
-              <input type="text" placeholder="Lookup Customer" class="form-control">
-            <button type="submit" class="btn btn-primary">Search</button>
-
-          </form>
+            <form action="/test/" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit" />
+            </form>
           </p>
       </div>
       <div class="container" id="new_cust" hidden="true">
