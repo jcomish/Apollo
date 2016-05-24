@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'SunLoanDelangIntegration',
     'DelangIntegrationTest',
+    'UserProfile',
 ]
 
 MIDDLEWARE_CLASSES = [

@@ -1,27 +1,26 @@
 from django.db import models
 
-
 class Customer(models.Model):
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     phone_number = models.CharField(max_length=200)
     email_address = models.EmailField()
     account_id = models.IntegerField(default=0)
-    store = models.ForeignKey('Store')
+    store = models.ForeignKey('Store', default=1)
     status_id = models.IntegerField(default=0)
     user_id = models.IntegerField(default=0)
-    messagetype = models.ForeignKey('MessageType')
+    messagetype = models.ForeignKey('MessageType', default=1)
     create_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.id
+        return self.first_name, self.last_name, self.email_address
 
 
 class Status(models.Model):
     status_name = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.status_name
+        return self.id, self.status_name
 
 
 class MessageType(models.Model):
