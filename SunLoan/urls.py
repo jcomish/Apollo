@@ -18,6 +18,8 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^$', include('SunLoanDelangIntegration.urls')),
+    url(r'^test/', include('DelangIntegrationTest.urls')),
+    url(r'^user/', include('UserProfile.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login',
         {'template_name': 'admin/login.html'}),
