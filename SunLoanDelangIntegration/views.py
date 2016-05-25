@@ -1,22 +1,25 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Customer
-from django.http import HttpResponseRedirect
-from django.utils.translation import ugettext_lazy as _
-
 from .forms import CustomerForm
+from UserProfile.models import Employee
+from .models import Store
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 0)
 def index(request):
     customer_list = Customer.objects.order_by('-create_date')[:10]
     form = CustomerForm()
+    employee = Employee.objects.get(pk=request.user.id)
     context = {
         'customer_list': customer_list,
-        'form': form,}
+        'form': form,
+        'employee': employee,}
     if request.method == 'POST':
-        customerform = CustomerForm(request.POST)
-        customerform.save_and_email()
+        customer_form = CustomerForm(request.POST)
+        customer_form.store = Store.objects.get(pk=employee.store_id)
+        customer_form.save_and_email()
+
 
     return render(request, 'base.html', context=context)
 

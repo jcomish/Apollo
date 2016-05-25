@@ -60,6 +60,7 @@ ROOT_URLCONF = 'SunLoan.urls'
 TEMPLATE_DIRS = (
     os.path.join(SETTINGS_PATH, 'SunLoanDelangIntegration/templates'),
     os.path.join(SETTINGS_PATH, 'DelangIntegrationTest/templates'),
+    os.path.join(SETTINGS_PATH, 'UserProfile/templates'),
 )
 
 TEMPLATES = [

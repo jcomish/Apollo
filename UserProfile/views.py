@@ -1,19 +1,17 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required, user_passes_test
-from .models import UserProfile
-# Create your views here.
+#from .models import UserProfile
+from .forms import UserForm
 
-
-from .forms import UserProfile
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 0)
 def index(request):
-    form = UserProfile()
+    form = UserForm()
     context = {
             'form': form,}
     if request.method == 'POST':
-        user_form = UserProfile(request.POST)
+        user_form = UserForm(request.POST)
         user_form.save()
 
-    return render(request, 'base.html', context=context)
+    return render(request, 'user.html', context=context)
