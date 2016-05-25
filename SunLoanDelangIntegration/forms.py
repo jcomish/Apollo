@@ -7,7 +7,8 @@ class CustomerForm(ModelForm):
 
         class Meta:
             model = Customer
-            exclude = ('store', 'create_date')
+            widgets = {'store': forms.HiddenInput()}
+            exclude = ('create_date',)
 
         def save_and_email(self):
             if self.is_valid():

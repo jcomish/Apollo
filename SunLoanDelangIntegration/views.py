@@ -6,18 +6,20 @@ from UserProfile.models import Employee
 from .models import Store
 
 @login_required
-@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 0)
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def index(request):
-    customer_list = Customer.objects.order_by('-create_date')[:10]
-    form = CustomerForm()
     employee = Employee.objects.get(pk=request.user.id)
+    store_name = Store.objects.get(pk=employee.store_id)
+    customer_list = Customer.objects.filter(store=store_name).order_by('-create_date')[:10]
+    form = CustomerForm(initial={'store': employee.store_id})
+
     context = {
         'customer_list': customer_list,
         'form': form,
         'employee': employee,}
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
-        customer_form.store = Store.objects.get(pk=employee.store_id)
+        #customer_form.store = employee.store_id
         customer_form.save_and_email()
 
 
