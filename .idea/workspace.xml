@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8bdc802-b2f1-4559-b764-590b29aec227" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/todo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/UserProfile/templates/user.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/UserProfile/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoan/settings.py" afterPath="$PROJECT_DIR$/SunLoan/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoan/urls.py" afterPath="$PROJECT_DIR$/SunLoan/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/forms.py" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/models.py" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserProfile/forms.py" afterPath="$PROJECT_DIR$/UserProfile/forms.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserProfile/models.py" afterPath="$PROJECT_DIR$/UserProfile/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/UserProfile/views.py" afterPath="$PROJECT_DIR$/UserProfile/views.py" />
     </list>
     <ignored path="SunLoan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -728,7 +716,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464116752381</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Tagged Store Name to Employee and Saved Customer to Employees Store">
+      <created>1464138358428</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1464138358428</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -808,7 +803,8 @@
     <MESSAGE value="Added SMS Test Page" />
     <MESSAGE value="Changed Models, Names, Views, and Forms for Customer Input" />
     <MESSAGE value="Expanded the User Model to include Store - this will be used to limit results to employees at a specific store and tag to customers registering them at a store." />
-    <option name="LAST_COMMIT_MESSAGE" value="Expanded the User Model to include Store - this will be used to limit results to employees at a specific store and tag to customers registering them at a store." />
+    <MESSAGE value="Tagged Store Name to Employee and Saved Customer to Employees Store" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tagged Store Name to Employee and Saved Customer to Employees Store" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
