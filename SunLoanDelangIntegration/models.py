@@ -8,7 +8,7 @@ class Customer(models.Model):
     email_address = models.EmailField()
     account_id = models.IntegerField(default=0)
     store = models.ForeignKey('Store', default=1)
-    status_id = models.IntegerField(default=0)
+    status = models.ForeignKey('Status', default=1)
     user_id = models.IntegerField(default=0)
     messagetype = models.ForeignKey('MessageType', default=1)
     create_date = models.DateTimeField(auto_now_add=True)

@@ -93,6 +93,20 @@
           </p>
      </div>
     </div>
+    {% if customer %}
+    <div class="container">
+        <h1>Customer Details</h1>
+        <p>
+        <ul>
+        <li><strong>Customer Name:</strong> {{ customer.first_name }}&nbsp;{{ customer.last_name }}</li>
+        <li><strong>Customer Email:</strong>{{ customer.email_address }}</li>
+        <li><strong>Customer Number:</strong>{{ customer.phone_number }}</li>
+        <li><strong>Customer Notifications:</strong> {{ customer.messagetype }}</li>
+        <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit Customer Data</a>
+        </ul>
+        </p>
+    </div>
+    {% endif %}
     <div class="container">
       <!-- Example row of columns -->
       <div class="row">
@@ -102,7 +116,7 @@
               {% if customer_list %}
                     <ul>
                     {% for customer in customer_list %}
-                        <li>{{ customer.first_name  }}&nbsp;{{ customer.last_name }}&nbsp;{{ customer.email_address }} <a class="btn btn-sm" href="#" role="button">View &raquo;</a></li>
+                        <li>{{ customer.first_name  }}&nbsp;{{ customer.last_name }}&nbsp;{{ customer.email_address }} <a class="btn btn-med" href="#" role="button">View &raquo;</a></li>
                     {% endfor %}
                     </ul>
                     {% else %}
