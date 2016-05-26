@@ -12,12 +12,9 @@ User = get_user_model()
 def import_users():
     write = ''
     users = [
-        ('user_2', 'phgzHpXcnJ', 'user_4@example.com', 'employee',),
-        ('user_3', 'ktMmqKcpJw', 'user_5@example.com', 'employee',),
+        ('test_employee111', 'Test@123!', 'user1_911@example.com', 'employee',),
+        ('test_nonemployee111', 'Test@123!', '1user_011@example.com', 'nonemployee',),
     ]
-
-    g = Group.objects.get(name='employee')
-
 
     for username, password, email, group in users:
         try:
@@ -26,7 +23,12 @@ def import_users():
             user.save()
             assert authenticate(username=username, password=password)
 
-            g.user_set.add(user)
+            if Group.objects.filter(name=group).exists():
+                g = Group.objects.get(name=group)
+                g.user_set.add(user)
+            else:
+                g = Group.objects.create(name=group)
+                g.user_set.add(user)
 
             write = "success"
         except:

@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import user_passes_test
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def index(request):
+    results = 'Something Went Wrong'
+
     if 'action' in request.GET:
         action = request.GET['action']
         if request.GET['action'] == 'user':
