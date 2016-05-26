@@ -30,7 +30,6 @@ def index(request):
     else:
         form = CustomerForm(initial={'store': employee.store_id, 'user_id': request.user.id})
 
-
     context = {
         'customer_list': customer_list,
         'form': form,
@@ -50,11 +49,7 @@ def index(request):
 
     return render(request, 'base.html', context=context)
 
-
-
-
-
-#def index(request):
+# def index(request):
     # customer_list = Customer.objects.order_by('create_date')[:10]
     # #output = ', '.join([q.question_text for q in latest_question_list])
     #
