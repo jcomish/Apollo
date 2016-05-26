@@ -15,7 +15,9 @@ def index(request):
     customer_list = Customer.objects.filter(store=store_name).order_by('-create_date')[:10]
     action = 'add'
 
-     # todo: refactor all the if statements
+    # todo: refactor all the if statements
+    # todo: add error handling for Notification selctions (if SMS we must have Phone)
+    # todo: add update logic based on action
     if 'action' in request.GET:
         action = request.GET['action']
         if (request.GET['action'] == 'edit') and ('customer_id' in request.GET):

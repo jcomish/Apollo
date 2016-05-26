@@ -1,11 +1,15 @@
-    <div class="container">
-        <h1>Customer Details</h1>
+<div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+        <h1>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong></h1>
         <p>
         <ul>
-        <li><strong>Customer Name:</strong> {{ customer.first_name }}&nbsp;{{ customer.last_name }}</li>
-        <li><strong>Customer Email:</strong>{{ customer.email_address }}</li>
-        <li><strong>Customer Number:</strong>{{ customer.phone_number }}</li>
-        <li><strong>Customer Notifications:</strong> {{ customer.messagetype }}</li>
+
+        <li><strong>Customer Email: </strong>{{ customer.email_address }}</li>
+        <li><strong>Customer Number: </strong>{{ customer.phone_number }}</li>
+        <li><strong>Customer Notifications: </strong> {{ customer.messagetype }}</li>
+        <li><strong>Customer Status: </strong> {{ customer.status.status_name }}</li>
+        </br>
+        <li><strong>Added: </strong> {{ customer.create_date }}</li>
+
         <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit Customer Data</a>
         </ul>
         </p>
