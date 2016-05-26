@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="b8bdc802-b2f1-4559-b764-590b29aec227" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/view.html" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/view.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" />
     </list>
     <ignored path="SunLoan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,6 +29,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-30">
+              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="nav.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/nav.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/forms.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -56,8 +76,8 @@
       <file leaf-file-name="view.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/view.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+            <state relative-caret-position="15">
+              <caret line="1" column="214" selection-start-line="1" selection-start-column="214" selection-end-line="1" selection-end-column="214" />
               <folding />
             </state>
           </provider>
@@ -117,9 +137,9 @@
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/nav.html" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/add.html" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/edit.html" />
-        <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/forms.py" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" />
+        <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/view.html" />
       </list>
     </option>
@@ -632,7 +652,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464228806053</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="added additional info to view.html">
+      <created>1464229053834</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1464229053834</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -716,7 +743,8 @@
     <MESSAGE value="Tagged Store Name to Employee and Saved Customer to Employees Store" />
     <MESSAGE value="Added View Customer Template after Creating and when customer_id is pasted via querystring" />
     <MESSAGE value="Refactored base.html code and views.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored base.html code and views.py" />
+    <MESSAGE value="added additional info to view.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="added additional info to view.html" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1070,22 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/nav.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1114,10 +1126,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/nav.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="10" selection-start-line="19" selection-start-column="10" selection-end-line="19" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-30">
+          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/view.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="63" selection-start-line="4" selection-start-column="63" selection-end-line="4" selection-end-column="63" />
+        <state relative-caret-position="15">
+          <caret line="1" column="214" selection-start-line="1" selection-start-column="214" selection-end-line="1" selection-end-column="214" />
           <folding />
         </state>
       </provider>

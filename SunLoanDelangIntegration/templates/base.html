@@ -27,10 +27,8 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
   <body>
     {% include "nav.html" %}
-
 
     {% if action == 'edit' %}
         {% include "edit.html" %}
@@ -38,8 +36,6 @@
         {% include "add.html" %}
     {%  endif  %}
 
-
-    </div>
     {% if customer %}
         {% include "view.html" %}
     {% endif %}

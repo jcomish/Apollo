@@ -1,5 +1,5 @@
 <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-        <h1>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong></h1>
+        <h2>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong> <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit Customer Data</a></h2>
         <p>
         <ul>
         <li><strong>Account ID: </strong>{{ customer.account_id }}</li>
@@ -9,8 +9,6 @@
         <li><strong>Customer Status: </strong> {{ customer.status.status_name }}</li>
         </br>
         <li><strong>Added: </strong> {{ customer.create_date }}</li>
-
-        <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit Customer Data</a>
         </ul>
         </p>
     </div>
