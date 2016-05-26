@@ -1,0 +1,16 @@
+
+ <div class="jumbotron">
+      <div class="container" id="cust_edit">
+        <p></br>Customer SMS and Email Notification Management System</p>
+        <p>Edit Customer Info<br>
+            <form class="form-inline" action="" method="post">
+                 <table>
+                    {% csrf_token %}
+                    {{ form.as_table }}
+                </table>
+          </br>
+            <a class="btn btn-primary" href="/" role="button" id="reload">Cancel &raquo;</a>
+            <input class="btn btn-primary" href="#" id="create" type="submit" value="Update Customer">          </form>
+          </p>
+     </div>
+ </div>
