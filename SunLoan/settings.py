@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'SunLoanDelangIntegration',
     'DelangIntegrationTest',
     'UserProfile',
+    'DataImport',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -89,11 +90,11 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
     # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'NotificationsApp',  # Or path to database file if using sqlite3.
+        'NAME': 'postgres',  # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
-        'USER': 'web',
+        'USER': 'cbrown',
         'PASSWORD': 'password',
-        'HOST': '192.168.56.101',
+        'HOST': '127.0.0.1',
     # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
         'PORT': '',  # Set to empty string for default.
     }

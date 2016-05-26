@@ -10,7 +10,7 @@ from .models import Store
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def index(request):
-    employee = Employee.objects.get(pk=request.user.id)
+    employee = Employee.objects.get(user_id=request.user.id)
     store_name = Store.objects.get(pk=employee.store_id)
     customer_list = Customer.objects.filter(store=store_name).order_by('-create_date')[:10]
     action = 'add'
