@@ -53,7 +53,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'SunLoan.urls'
@@ -62,6 +61,7 @@ TEMPLATE_DIRS = (
     os.path.join(SETTINGS_PATH, 'SunLoanDelangIntegration/templates'),
     os.path.join(SETTINGS_PATH, 'DelangIntegrationTest/templates'),
     os.path.join(SETTINGS_PATH, 'UserProfile/templates'),
+    os.path.join(SETTINGS_PATH, 'DataImport/templates'),
 )
 
 TEMPLATES = [

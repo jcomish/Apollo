@@ -8,17 +8,29 @@ from SunLoanDelangIntegration.models import MessageType
 
 User = get_user_model()
 
+# notes: CreateSuperUser - Import Stores - Import Users
 
-#  Update the users in this list.
-#  Each tuple represents the username, password, and email of a user.
-def import_users():
+
+def import_users(request):
     write = ''
     users = [
-        ('test_employee', 'Test@123!', 'user1@example.com', 'employee',),
-        ('test_nonemployee', 'Test@123!', 'user2@example.com', 'nonemployee',),
+        ('test_employee', 'Test@123!', 'user1@example.com', 'employee', '1'),
+        ('test_nonemployee', 'Test@123!', 'user2@example.com', 'nonemployee', '2'),
     ]
 
-    for username, password, email, group in users:
+    # add superuser logged into employee class so that they can access site
+    if Group.objects.filter(name='employee').exists():
+        g = Group.objects.get(name='employee')
+        g.user_set.add(request.user)
+    else:
+        g = Group.objects.create(name='employee')
+        g.user_set.add(request.user)
+
+    if Employee.objects.filter(user_id=request.user.id).exists() == False:
+        employee = Employee.objects.create(user_id=request.user.id, store_id=1)
+        employee.save()
+
+    for username, password, email, group, store_id in users:
         if User.objects.filter(username=username).exists():
             write = 'end' # todo: will convert to array and store info per user
         else:
@@ -27,6 +39,9 @@ def import_users():
                 user.set_password(password)
                 user.save()
                 assert authenticate(username=username, password=password)
+
+                employee = Employee.objects.create(user_id=user.id, store_id=store_id)
+                employee.save()
 
                 if Group.objects.filter(name=group).exists():
                     g = Group.objects.get(name=group)

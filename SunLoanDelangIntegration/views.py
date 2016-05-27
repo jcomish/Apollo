@@ -10,12 +10,14 @@ from .models import Store
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def index(request):
+
     employee = Employee.objects.get(user_id=request.user.id)
     store_name = Store.objects.get(pk=employee.store_id)
     customer_list = Customer.objects.filter(store=store_name).order_by('-create_date')[:10]
     action = 'add'
 
     # todo: refactor all the if statements
+    # todo: break out into a services file or other .py structure - getting messy
     # todo: add error handling for Notification selctions (if SMS we must have Phone)
     # todo: add update logic based on action
     if 'action' in request.GET:
