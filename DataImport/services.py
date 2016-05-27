@@ -3,8 +3,14 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import get_user_model
 from UserProfile.models import Employee
 from django.contrib.auth.models import Group
+from SunLoanDelangIntegration.models import Store
+from SunLoanDelangIntegration.models import MessageType
+
 
 User = get_user_model()
+Employee = Employee()
+# Store = Store()
+MessageType = MessageType()
 
 
 #  Update the users in this list.
@@ -36,5 +42,23 @@ def import_users():
                 write = "success"
             except:
                 write = str(format(username, sys.exc_info()[1]))
+    return write
+
+
+def import_stores():
+    write = ''
+    stores = ['Test Store 1', 'Test Store 2', ]
+
+    for store_name in stores:
+        if Store.objects.filter(store_name=store_name).exists():
+            write = 'end' # todo: will convert to array and store info per user
+        else:
+            try:
+                store = Store.objects.create(store_name=store_name)
+                store.save()
+
+                write = "success"
+            except:
+                write = "error"
     return write
 

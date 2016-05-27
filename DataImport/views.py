@@ -19,3 +19,12 @@ def index(request):
     return HttpResponse('Success' + results)
 
 
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def add_stores(request):
+    results = 'Something Went Wrong'
+    results = services.import_stores()
+
+    return HttpResponse('Success' + results)
+
+
