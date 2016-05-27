@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from UserProfile.models import Employee
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -10,6 +10,11 @@ from .forms import SMSForm
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def index(request):
+    if Employee.objects.filter(user_id=request.user.id).exists():
+        employee = Employee.objects.get(user_id=request.user.id)
+    else:
+        employee = ''
+
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -27,4 +32,7 @@ def index(request):
     else:
         form = SMSForm()
 
-    return render(request, 'test.html', {'form': form})
+        context = {
+            'employee': employee, 'form': form,}
+
+    return render(request, 'test.html', context)

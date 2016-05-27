@@ -49,3 +49,14 @@ def add_msg_types(request):
     results = services.import_message_types()
 
     return HttpResponse('Success' + results)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def add_status(request):
+
+    results = services.import_statuses()
+
+    return HttpResponse('Success' + results)
+
+

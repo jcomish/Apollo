@@ -5,7 +5,7 @@ from UserProfile.models import Employee
 from django.contrib.auth.models import Group
 from SunLoanDelangIntegration.models import Store
 from SunLoanDelangIntegration.models import MessageType
-
+from SunLoanDelangIntegration.models import Status
 User = get_user_model()
 
 # notes: CreateSuperUser - Import Stores - Import Users
@@ -67,6 +67,24 @@ def import_stores():
             try:
                 store = Store.objects.create(store_name=store_name)
                 store.save()
+
+                write = "success"
+            except:
+                write = "error"
+    return write
+
+
+def import_statuses():
+    write = ''
+    statuses = ['New Customer', 'Awating Verification', 'Verified', ]
+
+    for status in statuses:
+        if Status.objects.filter(status_name=status).exists():
+            write = 'end' # todo: will convert to array and store info per user
+        else:
+            try:
+                status = Status.objects.create(status_name=status)
+                status.save()
 
                 write = "success"
             except:

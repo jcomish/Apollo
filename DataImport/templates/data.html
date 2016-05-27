@@ -32,13 +32,14 @@
 
  {% include "nav.html" %}
 
+
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container" id="main" align="center">
-        <h2></br>Customer SMS and Email Notification Management Fresh Data Load</h2>
+        <h2></br></br>Customer SMS and Email Notification Management Fresh Data Load</h2>
           <h4>This page should only be used during testing and the DataImport Mod should be removed in Prod after Iniitial Data Load!</h4>
           <p class="">If Fresh Build I am assuming you have already created a superuser and should then: </br>
-              (1) Create Stores, (2) Create Employees, (3) Create Message Types</p>
+              (1) Create Stores, (2) Create Employees, (3) Create Message Types, (4) Create Statuses</p>
           <h4><i>Data Load should be done in that order!</i></br>
           If you want to start from the beginning, run the manage.py flush command to delete all data, then create a super user and login here.
           </h4>
@@ -46,6 +47,7 @@
         <p><a class="btn btn-primary" href="/data/stores" role="button" id="add">Create Stores</a>
             <a class="btn btn-primary" href="/data/employees" role="button" id="add">Create Employees</a>
             <a class="btn btn-primary" href="/data/msg" role="button" id="add">Create Message Types</a>
+            <a class="btn btn-primary" href="/data/status" role="button" id="add">Create Statuses</a>
           </p>
       </div>
 
