@@ -6,11 +6,7 @@ from django.contrib.auth.models import Group
 from SunLoanDelangIntegration.models import Store
 from SunLoanDelangIntegration.models import MessageType
 
-
 User = get_user_model()
-Employee = Employee()
-# Store = Store()
-MessageType = MessageType()
 
 
 #  Update the users in this list.
@@ -62,3 +58,20 @@ def import_stores():
                 write = "error"
     return write
 
+
+def import_message_types():
+    write = ''
+    msg_types = ['Opt-Out of Notifications', 'Opt-In to SMS', 'Opt-In to Email', 'Opt-In to SMS and Email', ]
+
+    for type in msg_types:
+        if MessageType.objects.filter(type=type).exists():
+            write = 'end' # todo: will convert to array and store info per user
+        else:
+            try:
+                msg = MessageType.objects.create(type=type)
+                msg.save()
+
+                write = "success"
+            except:
+                write = "error"
+    return write
