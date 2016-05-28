@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="b8bdc802-b2f1-4559-b764-590b29aec227" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataImport/services.py" afterPath="$PROJECT_DIR$/DataImport/services.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataImport/templates/data.html" afterPath="$PROJECT_DIR$/DataImport/templates/data.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataImport/urls.py" afterPath="$PROJECT_DIR$/DataImport/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DataImport/views.py" afterPath="$PROJECT_DIR$/DataImport/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DelangIntegrationTest/templates/test.html" afterPath="$PROJECT_DIR$/DelangIntegrationTest/templates/test.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DelangIntegrationTest/views.py" afterPath="$PROJECT_DIR$/DelangIntegrationTest/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/nav.html" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/nav.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="SunLoan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,7 +28,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="services.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="services.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DataImport/services.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="88">
@@ -42,6 +36,16 @@
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -164,6 +168,7 @@
         <option value="$PROJECT_DIR$/DataImport/urls.py" />
         <option value="$PROJECT_DIR$/DataImport/templates/data.html" />
         <option value="$PROJECT_DIR$/DataImport/services.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -734,7 +739,14 @@
       <option name="project" value="LOCAL" />
       <updated>1464368662918</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Added Data Management Page&#10;Added Nav Bar">
+      <created>1464372427584</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1464372427584</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -824,7 +836,8 @@
     <MESSAGE value="Added Default Store Data Load" />
     <MESSAGE value="Added Default Msg Types Data Load" />
     <MESSAGE value="Initial Data Load View and Functions complete (DataImport Mod)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Data Load View and Functions complete (DataImport Mod)" />
+    <MESSAGE value="Added Data Management Page&#10;Added Nav Bar" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Data Management Page&#10;Added Nav Bar" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -862,7 +875,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/services.py" />
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/test.html" />
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/assets/jumbotron.css">
       <provider selected="true" editor-type-id="text-editor">
@@ -1242,6 +1254,14 @@
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
