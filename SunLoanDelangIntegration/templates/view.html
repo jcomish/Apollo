@@ -16,7 +16,13 @@
             </p>
         </div>
         <div class="col-md-6">
-            <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="add">Select Notification</a></br>
+             Customer Status: {{ customer.status.id }}
+             Verification Code: {{ verification }}
+            {% if customer.status.id > 1 %}
+            <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="add">Message Customer</a></br>
+            {% else %}
+             <a class="btn btn-primary" href="/verify/?customer_id={{ customer.id }}" role="button" id="add">Verifiy Customer</a></br>
+            {% endif %}
             <a class="btn btn-primary" href="/" role="button" id="reload">Cancel &raquo;</a>
         </div>
     </div>

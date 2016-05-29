@@ -5,6 +5,8 @@ from .models import Customer
 from .forms import CustomerForm
 from UserProfile.models import Employee
 from .models import Store
+from . import services
+
 
 
 @login_required
@@ -15,6 +17,7 @@ def index(request):
     store_name = Store.objects.get(pk=employee.store_id)
     customer_list = Customer.objects.filter(store=store_name).order_by('-create_date')[:10]
     action = 'add'
+    verification_code = 'none'
 
     # todo: refactor all the if statements
     # todo: break out into a services file or other .py structure - getting messy
@@ -42,12 +45,19 @@ def index(request):
     if ('customer_id' in request.GET) and (action != 'edit'):
         # todo: restrict access to storeid from customer object
         customer = Customer.objects.get(pk=request.GET['customer_id'])
+
         context.update({'customer':customer,})
 
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
         customer_id = customer_form.save_and_email()
+        # set verification code
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
+        # else: get verification code?
+
+    verification_code = services.get_verification_code(employee)
+
+    context.update({'verification': verification_code,})
 
     return render(request, 'base.html', context=context)
 
@@ -68,7 +78,6 @@ def view(request):
             customer = Customer.objects.get(pk=request.GET['customer_id'])
         except Exception as e:
             customer = e
-
         context.update({'customer': customer,})
 
     if request.method == 'POST':
