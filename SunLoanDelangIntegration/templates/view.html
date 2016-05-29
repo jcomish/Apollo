@@ -1,14 +1,24 @@
 <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-        <h2>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong> <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit Customer Data</a></h2>
-        <p>
-        <ul>
-        <li><strong>Account ID: </strong>{{ customer.account_id }}</li>
-        <li><strong>Customer Email: </strong>{{ customer.email_address }}</li>
-        <li><strong>Customer Number: </strong>{{ customer.phone_number }}</li>
-        <li><strong>Customer Notifications: </strong> {{ customer.messagetype }}</li>
-        <li><strong>Customer Status: </strong> {{ customer.status.status_name }}</li>
-        </br>
-        <li><strong>Added: </strong> {{ customer.create_date }}</li>
-        </ul>
-        </p>
+    <div class="row" id="view">
+         <h4>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong>
+             <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit</a></h4>
+        <div class="col-md-6">
+            <p>
+            <ul>
+                <li><strong>Account ID: </strong>{{ customer.account_id }}</li>
+                <li><strong>Email Address: </strong>{{ customer.email_address }}</li>
+                <li><strong>Phone Number: </strong>{{ customer.phone_number }}</li>
+                <li><strong>Notifications Preference: </strong> {{ customer.messagetype }}</li>
+                <li><strong>Customer Status: </strong> {{ customer.status.status_name }}</li>
+                </br>
+                <li><strong>Added: </strong> {{ customer.create_date }}</li>
+            </ul>
+            </p>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="add">Select Notification</a></br>
+            <a class="btn btn-primary" href="/" role="button" id="reload">Cancel &raquo;</a>
+        </div>
     </div>
+    <hr>
+</div>

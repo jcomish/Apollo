@@ -31,19 +31,15 @@
 
 {% include "nav.html" %}
 
-{% if action == 'edit' %}
-    {% include "edit.html" %}
+{% if customer.id > 0 %}
+        {% include "send.html" %}
 {% else %}
-    {% include "add.html" %}
-{% endif %}
-
-{% if customer %}
-        {% include "view.html" %}
+    {% include "invalid_customer.html" %}
 {% endif %}
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            <h2>Recent Customers</h2>
+            <h2>Message</h2>
             <p>
                 {% if customer_list %}
                     <ul>

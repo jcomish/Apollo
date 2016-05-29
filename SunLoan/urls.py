@@ -17,13 +17,13 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^$', include('SunLoanDelangIntegration.urls')),
     url(r'^test/', include('DelangIntegrationTest.urls')),
     url(r'^user/', include('UserProfile.urls')),
     url(r'^data/', include('DataImport.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/$', 'django.contrib.auth.views.login',
         {'template_name': 'admin/login.html'}),
-    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout'),]
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout'),
+    url(r'^', include('SunLoanDelangIntegration.urls')),]
 
 admin.site.site_header = 'Notification Manager'
