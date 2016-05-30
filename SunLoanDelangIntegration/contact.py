@@ -47,7 +47,9 @@ class Contact(object):
             tree = ET.fromstring(response.content)
             for elem in tree.iter():
                 if elem.tag == "ErrorMessage":
-                    self.contactId = elem.text
+                    error_msg = elem.text
+                    self.contactId = error_msg.replace('Phone number already exists. ID = ','')
+            # todo: retrieve info for previous contactid and record to another table, possibly compare lastname?
         else:
             contactLogging.error(response)
 
