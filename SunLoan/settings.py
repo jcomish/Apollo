@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'SunLoanDelangIntegration',
     'DelangIntegrationTest',
     'UserProfile',
+    'DataImport',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -52,7 +53,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'SunLoan.urls'
@@ -61,6 +61,7 @@ TEMPLATE_DIRS = (
     os.path.join(SETTINGS_PATH, 'SunLoanDelangIntegration/templates'),
     os.path.join(SETTINGS_PATH, 'DelangIntegrationTest/templates'),
     os.path.join(SETTINGS_PATH, 'UserProfile/templates'),
+    os.path.join(SETTINGS_PATH, 'DataImport/templates'),
 )
 
 TEMPLATES = [
@@ -88,13 +89,10 @@ WSGI_APPLICATION = 'SunLoan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'NotificationsApp',  # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': 'web',
+        'NAME': 'postgres',  # Or path to database file if using sqlite3.
+        'USER': 'cbrown',
         'PASSWORD': 'password',
-        'HOST': '192.168.56.101',
-    # Empty for localhost through domain sockets or           '127.0.0.1' for localhost through TCP.
+        'HOST': '127.0.0.1',
         'PORT': '',  # Set to empty string for default.
     }
 }

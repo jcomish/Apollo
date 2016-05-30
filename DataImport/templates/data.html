@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../assets/favicon.ico">
+
+    <title>Sun Loan Notification Manager</title>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://maxcdn.bootstrapcdn.com/js/ie10-viewport-bug-workaround.js" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../assets/jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../assets/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+ {% include "nav.html" %}
+
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container" id="main" align="center">
+        <h2></br></br>Customer SMS and Email Notification Management Fresh Data Load</h2>
+          <h4>This page should only be used during testing and the DataImport Mod should be removed in Prod after Iniitial Data Load!</h4>
+          <p class="">If Fresh Build I am assuming you have already created a superuser and should then: </br>
+              (1) Create Stores, (2) Create Employees, (3) Create Message Types, (4) Create Statuses</p>
+          <h4><i>Data Load should be done in that order!</i></br>
+          If you want to start from the beginning, run the manage.py flush command to delete all data, then create a super user and login here.
+          </h4>
+
+        <p><a class="btn btn-primary" href="/data/stores" role="button" id="add">Create Stores</a>
+            <a class="btn btn-primary" href="/data/employees" role="button" id="add">Create Employees</a>
+            <a class="btn btn-primary" href="/data/msg" role="button" id="add">Create Message Types</a>
+            <a class="btn btn-primary" href="/data/status" role="button" id="add">Create Statuses</a>
+          </p>
+      </div>
+
+    </div>
+
+    <div class="container">
+
+      <hr>
+
+      <footer>
+        <p>&copy; Copyright 2016 Sun Loan Company</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <!-- Bootstrap core CSS -->
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+
+  </body>
+</html>
+
+

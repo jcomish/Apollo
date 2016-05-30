@@ -11,6 +11,8 @@ class Customer(models.Model):
     status = models.ForeignKey('Status', default=1)
     user_id = models.IntegerField(default=0)
     messagetype = models.ForeignKey('MessageType', default=1)
+    verification_code = models.IntegerField(default=0)
+    delang_contact_id = models.IntegerField(default=0)
     create_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

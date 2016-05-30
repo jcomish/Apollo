@@ -1,0 +1,31 @@
+<div class="jumbotron">
+    <div class="container" id="main">
+        <div class="row" id="send">
+            </br></br></br>
+            <p>
+            <h4>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong> - <strong>
+                (Account ID: </strong>{{ customer.account_id }}<strong>)</strong></h4>
+            </br>
+            <div class="col-md-6">
+                <strong>Email Address: </strong>{{ customer.email_address }} &nbsp;&nbsp;&nbsp; <strong>Phone
+                Number: </strong>{{ customer.phone_number }}
+                </br>
+                <form class="form-inline" action="/" method="post">
+                    </br>
+                    <select name="templates">
+                        <option value="">-- Select Notification -- </option>
+                        <option value="due">Payment Due</option>
+                        <option value="reminder">Refinance Reminder</option>
+                        <option value="former">Former Borrower Message</option>
+                    </select></br></br>
+                    <input class="btn btn-primary" href="#" id="notify" type="submit" value="Send Notification">
+                </form>
+                </br>
+                <a class="btn btn-primary" href="/" role="button" id="reload">Cancel</a>
+
+            </div>
+            </p>
+        </div>
+        <hr>
+    </div>
+</div>

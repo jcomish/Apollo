@@ -1,26 +1,26 @@
-    <div class="jumbotron">
-      <div class="container" id="main">
+<div class="jumbotron">
+    <div class="container" id="main">
         <p></br>Customer SMS and Email Notification Management System</p>
-        <p><a class="btn btn-primary" href="#" role="button" id="add">Add Customer &raquo;</a>
-             <form class="form-inline">
-              <input type="text" placeholder="Lookup Customer" class="form-control">
-            <button type="submit" class="btn btn-primary">Search</button>
 
-          </form>
-          </p>
-      </div>
-      <div class="container" id="new_cust" hidden="true">
+        <form class="form-inline">
+            <a class="btn btn-primary" href="#" role="button" id="add">Add Customer &raquo;</a>
+            <input type="text" placeholder="Lookup Customer" class="form-control">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+
+    </div>
+    <div class="container" id="new_cust" hidden="true">
         <p></br>Customer SMS and Email Notification Management System</p>
         <p>Fill out Form to Add New Customer<br>
-          <form class="form-inline" action="/" method="post">
-                <table>
-                    {% csrf_token %}
-                    {{ form.as_table }}
-                </table>
-          </br>
+        <form class="form-inline" action="/" method="post">
+            <table>
+                {% csrf_token %}
+                {{ form.as_table }}
+            </table>
+            </br>
             <a class="btn btn-primary" href="#" role="button" id="cancel">Cancel &raquo;</a>
             <input class="btn btn-primary" href="#" id="create" type="submit" value="Create Customer">
-          </form>
-          </p>
-     </div>
+        </form>
+        </p>
     </div>
+</div>
