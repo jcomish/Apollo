@@ -56,6 +56,36 @@ def index(request):
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
+def search(request):
+
+    employee = Employee.objects.get(user_id=request.user.id)
+    store_name = Store.objects.get(pk=employee.store_id)
+    action = 'add'
+    verification_code = 'none'
+
+    if request.method == 'POST':
+
+        search = request.POST.get('search')
+        field = request.POST.get('criteria')
+        customer_list = Customer.objects.filter(**{'store':store_name,field + '__icontains':search})\
+            .order_by('-create_date')[:10]
+
+        context = {
+            'customer_list': customer_list,
+            'employee': employee,
+            'action': action,
+        }
+
+
+        return render(request, 'base.html', context=context)
+
+    else:
+        return HttpResponseRedirect('/')
+
+
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def view(request):
     employee = Employee.objects.get(user_id=request.user.id)
     store_name = Store.objects.get(pk=employee.store_id)
@@ -80,6 +110,8 @@ def view(request):
     return render(request, 'base_view.html', context=context)
 
 
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def verify(request):
     employee = Employee.objects.get(user_id=request.user.id)
     # store_name = Store.objects.get(pk=employee.store_id)
@@ -89,10 +121,11 @@ def verify(request):
     if request.method == 'POST':
         if 'customer_id' in request.GET:
             # todo: restrict access to customer based on storeid from customer object and employee storeid
+            # todo: assign color codes to customer status
             customer_id = request.GET['customer_id']
             try:
                 customer = Customer.objects.get(pk=customer_id)
-                # todo: check to make sure code is numberic or else this is going ot blow up
+                # todo: check to make sure code is numeric or else this is going ot blow up
                 if int(code) == customer.verification_code:
                     Customer.objects.filter(pk=customer_id).update(status=3)
                     is_validated = 'Success'
