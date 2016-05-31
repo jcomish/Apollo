@@ -16,11 +16,17 @@ class CustomerForm(ModelForm):
 
         # not used todo: remove
         def save_and_email(self):
+            message_id = 0
+
             if self.is_valid():
                 customer = self.save(commit=False)
                 customer.verification_code = services.get_verification_code()
                 customer.delang_contact_id = services.create_contact(customer)
                 customer.save()
+
+                if int(customer.id) > 0 and int(customer.delang_contact_id) > 0:
+                    services.send_welcome_message(customer)
+
                 return customer.id
             else:
                 return 0

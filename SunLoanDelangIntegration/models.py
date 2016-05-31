@@ -35,6 +35,8 @@ class MessageType(models.Model):
 
 class Store(models.Model):
     store_name = models.CharField(max_length=200)
+    api_key = models.CharField(max_length=200, default='8dba905330fa4d5a9b5193c4cedb540c')
+
 
     def __str__(self):
         return self.store_name

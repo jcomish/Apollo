@@ -28,9 +28,7 @@ class Contact(object):
         last_name = SubElement(root, 'LastName')
         last_name.text = self.lastName
 
-
-
-        #Add Try Catch Logic and also input validation for Message and Phone Number
+        # Add Try Catch Logic and also input validation for Message and Phone Number
         response = requests.post(endpoint, data=tostring(root), headers=self.headers)
         status_code = response.status_code
 
@@ -53,17 +51,16 @@ class Contact(object):
         else:
             contactLogging.error(response)
 
+        # Sample Response from Delange
+        # <Message>
+        # 	<Content>Test 2 String content</Content>
+        # 	<PhoneNumbers><string>+12109191320</string></PhoneNumbers>
+        # </Message>
 
-                    # Sample Response from Delange
-                    # <Message>
-                    # 	<Content>Test 2 String content</Content>
-                    # 	<PhoneNumbers><string>+12109191320</string></PhoneNumbers>
-                    # </Message>
-
-                    # sample usage
-                    # mysms = SMS()
-                    # mysms.message = "Hello Chris"
-                    # mysms.send()
+        # sample usage
+        # mysms = SMS()
+        # mysms.message = "Hello Chris"
+        # mysms.send()
 
 
 
