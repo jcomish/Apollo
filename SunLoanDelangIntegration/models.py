@@ -2,11 +2,12 @@ from django.db import models
 
 
 class Customer(models.Model):
-    first_name = models.CharField(max_length=200)
-    last_name = models.CharField(max_length=200)
-    phone_number = models.CharField(max_length=200)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=12)
+    # todo: split phonenumber up into area code and number then concatenate with +1 when SMS
     email_address = models.EmailField()
-    account_id = models.IntegerField(default=0)
+    account_id = models.CharField(max_length=20,default='')
     store = models.ForeignKey('Store', default=1)
     status = models.ForeignKey('Status', default=1)
     user_id = models.IntegerField(default=0)
@@ -35,6 +36,8 @@ class MessageType(models.Model):
 
 class Store(models.Model):
     store_name = models.CharField(max_length=200)
+    api_key = models.CharField(max_length=200, default='8dba905330fa4d5a9b5193c4cedb540c')
+
 
     def __str__(self):
         return self.store_name

@@ -28,9 +28,7 @@ class Contact(object):
         last_name = SubElement(root, 'LastName')
         last_name.text = self.lastName
 
-
-
-        #Add Try Catch Logic and also input validation for Message and Phone Number
+        # Add Try Catch Logic and also input validation for Message and Phone Number
         response = requests.post(endpoint, data=tostring(root), headers=self.headers)
         status_code = response.status_code
 
@@ -47,21 +45,22 @@ class Contact(object):
             tree = ET.fromstring(response.content)
             for elem in tree.iter():
                 if elem.tag == "ErrorMessage":
-                    self.contactId = elem.text
+                    error_msg = elem.text
+                    self.contactId = error_msg.replace('Phone number already exists. ID = ','')
+            # todo: retrieve info for previous contactid and record to another table, possibly compare lastname?
         else:
             contactLogging.error(response)
 
+        # Sample Response from Delange
+        # <Message>
+        # 	<Content>Test 2 String content</Content>
+        # 	<PhoneNumbers><string>+12109191320</string></PhoneNumbers>
+        # </Message>
 
-                    # Sample Response from Delange
-                    # <Message>
-                    # 	<Content>Test 2 String content</Content>
-                    # 	<PhoneNumbers><string>+12109191320</string></PhoneNumbers>
-                    # </Message>
-
-                    # sample usage
-                    # mysms = SMS()
-                    # mysms.message = "Hello Chris"
-                    # mysms.send()
+        # sample usage
+        # mysms = SMS()
+        # mysms.message = "Hello Chris"
+        # mysms.send()
 
 
 
