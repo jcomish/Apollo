@@ -14,7 +14,6 @@ class CustomerForm(ModelForm):
                 'messagetype': _('Notifications:'),
             }
 
-        # not used todo: remove
         def save_and_email(self):
             message_id = 0
 
@@ -26,6 +25,15 @@ class CustomerForm(ModelForm):
 
                 if int(customer.id) > 0 and int(customer.delang_contact_id) > 0:
                     services.send_welcome_message(customer)
+
+                return customer.id
+            else:
+                return 0
+
+        def update_and_email(self):
+            if self.is_valid():
+                customer = self.save(commit=False)
+                # todo: add update logic
 
                 return customer.id
             else:

@@ -10,6 +10,18 @@ from . import services
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
+def update(request):
+    if request.method == 'POST':
+        customer_form = CustomerForm(request.POST)
+        customer_id = customer_form.update_and_email()
+        return HttpResponseRedirect('/?customer_id=' + str(customer_id))
+
+    return HttpResponseRedirect('/')
+
+
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def index(request):
 
     employee = Employee.objects.get(user_id=request.user.id)
