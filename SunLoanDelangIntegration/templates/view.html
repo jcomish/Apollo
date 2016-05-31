@@ -1,5 +1,5 @@
-<div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
-    <div class="row" id="view">
+<div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" id="view">
+    <div class="row">
          <h4>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong>
              <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit</a></h4>
         <div class="col-md-6">
@@ -16,12 +16,14 @@
             </p>
         </div>
         <div class="col-md-6">
-             Customer Status: {{ customer.status.id }}
-             Verification Code: {{ verification }}
             {% if customer.status.id > 1 %}
-            <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="add">Message Customer</a></br>
+            <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="msg">Message Customer</a></br>
             {% else %}
-             <a class="btn btn-primary" href="/verify/?customer_id={{ customer.id }}" role="button" id="add">Verifiy Customer</a></br>
+                <form class="form-inline" action="/verify/?customer_id={{ customer.id }}" method="post" id="ver_code">
+                    {% csrf_token %}
+                    <input type="text" size="5" placeholder="Code" class="form-control" name="code">
+                    <input class="btn btn-primary" href="#" id="verify" type="submit" value="Verify Customer">&nbsp;{{ request.GET.validated }}
+                </form>
             {% endif %}
             <a class="btn btn-primary" href="/" role="button" id="reload">Cancel &raquo;</a>
         </div>

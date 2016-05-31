@@ -42,14 +42,14 @@
 {% endif %}
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+        <div>
             <h2>Recent Customers</h2>
             <p>
                 {% if customer_list %}
                     <ul>
                         {% for customer in customer_list %}
-                            <li>{{ customer.first_name }}&nbsp;{{ customer.last_name }}&nbsp;{{ customer.email_address }}
-                                <a class="btn btn-med" href="/?customer_id={{ customer.id }}#view"
+                            <li>{{ customer.first_name }}&nbsp;{{ customer.last_name }}&nbsp;{{ customer.email_address }}&nbsp;{{ customer.status.status_name }}
+                                <a class="btn btn-med" href="/?customer_id={{ customer.id }}"
                                    role="button">View &raquo;</a></li>
                         {% endfor %}
                     </ul>
