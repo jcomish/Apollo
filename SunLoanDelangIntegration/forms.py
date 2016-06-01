@@ -32,8 +32,14 @@ class CustomerForm(ModelForm):
 
         def update_and_email(self):
             if self.is_valid():
-                customer = self.save(commit=False)
-                # todo: add update logic
+                customer = Customer.objects.get(pk=int(self.data.get('user_id')))
+                customer.last_name = self.data.get('last_name')
+                customer.first_name = self.data.get('first_name')
+                customer.phone_number = self.data.get('phone_number')
+                customer.account_id = self.data.get('account_id')
+                customer.email_address = self.data.get('email_address')
+                customer.messagetype_id = self.data.get('messagetype')
+                customer.save()
 
                 return customer.id
             else:
