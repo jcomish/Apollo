@@ -20,6 +20,25 @@ class Customer(models.Model):
         return self.first_name, self.last_name, self.email_address
 
 
+class Message(models.Model):
+    name = models.CharField(max_length=200)
+    verbiage = models.TextField()
+
+    def __self__(self):
+        return self.name
+
+
+class SentMessages(models.Model):
+    customer =  models.ForeignKey('Customer', null=False )
+    delang_message_id = models.IntegerField(null=False)
+    raw_message = models.TextField()
+    message = models.ForeignKey('Message', null=False)
+    date_sent = models.DateField(auto_now_add=True)
+
+    def __self__(self):
+        return self.customer, self.message
+
+
 class Status(models.Model):
     status_name = models.CharField(max_length=200)
 
@@ -36,6 +55,10 @@ class MessageType(models.Model):
 
 class Store(models.Model):
     store_name = models.CharField(max_length=200)
+    street = models.CharField(max_length=200)
+    state = models.CharField(max_length=2)
+    zip_code = models.CharField(max_length=5)
+    phone_number = models.CharField(max_length=12)
     api_key = models.CharField(max_length=200, default='8dba905330fa4d5a9b5193c4cedb540c')
 
 
