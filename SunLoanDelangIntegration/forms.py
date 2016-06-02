@@ -35,15 +35,15 @@ class CustomerForm(ModelForm):
             else:
                 return 0
 
-        def update_and_email(self):
+        def update_and_email(self, customer_id):
             if self.is_valid():
-                customer = Customer.objects.get(pk=int(self.data.get('user_id')))
+                customer = Customer.objects.get(pk=int(customer_id))
                 customer.last_name = self.data.get('last_name')
                 customer.first_name = self.data.get('first_name')
                 customer.phone_number = self.data.get('phone_number')
                 customer.account_id = self.data.get('account_id')
                 customer.email_address = self.data.get('email_address')
-                customer.notification_setting_id = self.data.get('notification_setting_id')
+                customer.notification_setting_id = self.data.get('notification_setting')
                 customer.save()
 
                 return customer.id

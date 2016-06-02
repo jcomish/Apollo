@@ -28,9 +28,16 @@ class Message(models.Model):
         return self.name
 
 
+class MessageType(models.Model):
+    name = models.CharField(max_length=10)
+
+    def __self__(self):
+        return self.name
+
+
 class SentMessages(models.Model):
     customer = models.ForeignKey('Customer', null=False )
-    delang_message_id = models.IntegerField(null=False)
+    delang_message_id = models.IntegerField(null=False) # will log 0 for failures. todo: need monitoring for 0's
     raw_message = models.CharField(max_length=2000)
     message = models.ForeignKey('Message', null=False)
     date_sent = models.DateField(auto_now_add=True)

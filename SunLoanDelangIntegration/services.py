@@ -1,6 +1,7 @@
 from random import randint
 from . import contact
 from . import sms
+from .models import SentMessages
 import logging
 
 contactLogging = logging.getLogger('contact_api')
@@ -32,6 +33,20 @@ def send_welcome_message(customer):
     # todo: retrieve welcome message from model and find and replace
     welcome_sms.message = "Welcome to Sun Loan Notifications. Please call your Loan Coordinator at XXX-XXXX and give" \
                           " them this verification code: " + str(customer.verification_code)
+
+    # messageid = 1 for welcome message todo: retrieve welcome message id from DB
+    log_message(customer, 1, 1, welcome_sms) # todo: make a welcome message class abstracted to be the same as email
     welcome_sms.send()
 
     return welcome_sms.messageId
+
+
+def log_message(customer, message_type, message_id, message):
+    cust_message = SentMessages()
+    cust_message.customer_id = customer.id
+    cust_message.raw_message = message.message
+    cust_message.delang_message_id = message.messageId
+    cust_message.message = message_id
+
+
+    return True

@@ -12,7 +12,7 @@ from .models import Store
 def update(request):
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
-        customer_id = customer_form.update_and_email()
+        customer_id = customer_form.update_and_email(request.POST.get('customer_id'))
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
     return HttpResponseRedirect('/')
@@ -37,9 +37,6 @@ def index(request):
         if (request.GET['action'] == 'edit') and ('customer_id' in request.GET):
             # todo: restrict access to storeid from customer object
             customer = Customer.objects.get(pk=request.GET['customer_id'])
-            Customer.objects.filter(**{'store': store_name, field + '__icontains': search}) \
-                .order_by('-create_date')[:10]
-
             form = CustomerForm(instance=customer)
             action = 'edit'
         else:
@@ -80,7 +77,7 @@ def search(request):
 
         search = request.POST.get('search')
         field = request.POST.get('criteria')
-        customer_list = Customer.objects.filter(**{'store':store_name,field + '__icontains':search})\
+        customer_list = Customer.objects.filter(**{'store':store_name, field + '__icontains':search})\
             .order_by('-create_date')[:10]
 
         context = {
@@ -88,7 +85,6 @@ def search(request):
             'employee': employee,
             'action': action,
         }
-
 
         return render(request, 'base.html', context=context)
 
