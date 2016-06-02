@@ -6,6 +6,7 @@ from django.contrib.auth.models import Group
 from SunLoanDelangIntegration.models import Store
 from SunLoanDelangIntegration.models import MessageType
 from SunLoanDelangIntegration.models import Status
+from SunLoanDelangIntegration.models import Message
 User = get_user_model()
 
 # notes: CreateSuperUser - Import Stores - Import Users
@@ -68,6 +69,26 @@ def import_stores():
                 store = Store.objects.create(store_name=store_name)
                 store.save()
 
+                write = "success"
+            except:
+                write = "error"
+    return write
+
+
+def import_messages():
+    write = ''
+    messages = {'Welcome': 'Welcome to Sun Loan Notifications. Please call your Loan Coordinator at XXX-XXXX and give' \
+                ' them this verification code: ZZZZ', 'test': 'test'}
+
+    for name in messages:
+        if Message.objects.filter(name=name).exists():
+            write = 'end' # todo: will convert to array and store info per user
+        else:
+            try:
+                msg = Message.objects.create()
+                msg.name = name
+                msg.verbiage = messages[name]
+                msg.save()
                 write = "success"
             except:
                 write = "error"

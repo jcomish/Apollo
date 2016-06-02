@@ -20,10 +20,11 @@ class CustomerForm(ModelForm):
             if self.is_valid():
                 customer = self.save(commit=False)
                 customer.verification_code = services.get_verification_code()
+                message_id = self.data.get('messagetype')
 
                 # if customer opt-in SMS or both
                 # todo: may change depending on email api delang exposes
-                if self.messagetype == 2 or self.messagetype == 4:
+                if message_id == 2 or message_id == 4:
                     customer.delang_contact_id = services.create_contact(customer)
                 customer.save()
 
