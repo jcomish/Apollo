@@ -96,7 +96,6 @@ def search(request):
         return HttpResponseRedirect('/')
 
 
-
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def view(request):

@@ -4,7 +4,7 @@ from django.contrib.auth import get_user_model
 from UserProfile.models import Employee
 from django.contrib.auth.models import Group
 from SunLoanDelangIntegration.models import Store
-from SunLoanDelangIntegration.models import MessageType
+from SunLoanDelangIntegration.models import NotificationSetting
 from SunLoanDelangIntegration.models import Status
 from SunLoanDelangIntegration.models import Message
 User = get_user_model()
@@ -113,16 +113,16 @@ def import_statuses():
     return write
 
 
-def import_message_types():
+def import_notification_settings():
     write = ''
-    msg_types = ['Opt-Out of Notifications', 'Opt-In to SMS', 'Opt-In to Email', 'Opt-In to SMS and Email', ]
+    notification_settings = ['Opt-Out of Notifications', 'Opt-In to SMS', 'Opt-In to Email', 'Opt-In to SMS and Email', ]
 
-    for type in msg_types:
-        if MessageType.objects.filter(type=type).exists():
+    for setting in notification_settings:
+        if NotificationSetting.objects.filter(setting=setting).exists():
             write = 'end' # todo: will convert to array and store info per user
         else:
             try:
-                msg = MessageType.objects.create(type=type)
+                msg = NotificationSetting.objects.create(setting=setting)
                 msg.save()
 
                 write = "success"

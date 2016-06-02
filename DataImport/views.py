@@ -46,8 +46,7 @@ def add_stores(request):
 @user_passes_test(lambda u: u.is_superuser)
 def add_msg_types(request):
 
-    results = services.import_message_types()
-
+    results = services.import_notification_settings()
     return HttpResponse('Results: ' + results)
 
 

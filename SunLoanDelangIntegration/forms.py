@@ -11,7 +11,7 @@ class CustomerForm(ModelForm):
             widgets = {'store': forms.HiddenInput(), 'user_id': forms.HiddenInput(), 'account_id': forms.NumberInput()}
             exclude = ('create_date', 'status', 'verification_code', 'delang_contact_id' )
             labels = {
-                'messagetype': _('Notifications:'),
+                "notification_setting": _('Notifications:'),
             }
 
         def save_and_email(self):
@@ -20,11 +20,11 @@ class CustomerForm(ModelForm):
             if self.is_valid():
                 customer = self.save(commit=False)
                 customer.verification_code = services.get_verification_code()
-                message_id = self.data.get('messagetype')
+                message_id = self.data.get('notification_setting')
 
                 # if customer opt-in SMS or both
                 # todo: may change depending on email api delang exposes
-                if message_id == 2 or message_id == 4:
+                if int(message_id) == 2 or (message_id) == 4:
                     customer.delang_contact_id = services.create_contact(customer)
                 customer.save()
 
@@ -43,7 +43,7 @@ class CustomerForm(ModelForm):
                 customer.phone_number = self.data.get('phone_number')
                 customer.account_id = self.data.get('account_id')
                 customer.email_address = self.data.get('email_address')
-                customer.messagetype_id = self.data.get('messagetype')
+                customer.notification_setting_id = self.data.get('notification_setting_id')
                 customer.save()
 
                 return customer.id

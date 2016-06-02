@@ -7,11 +7,11 @@ class Customer(models.Model):
     phone_number = models.CharField(max_length=12)
     # todo: split phonenumber up into area code and number then concatenate with +1 when SMS
     email_address = models.EmailField()
-    account_id = models.CharField(max_length=20,default='')
+    account_id = models.CharField(max_length=20, default='')
     store = models.ForeignKey('Store', default=1)
     status = models.ForeignKey('Status', default=1)
     user_id = models.IntegerField(default=0)
-    messagetype = models.ForeignKey('MessageType', default=1)
+    notification_setting = models.ForeignKey('NotificationSetting', default=1)
     verification_code = models.IntegerField(default=0)
     delang_contact_id = models.IntegerField(default=0)
     create_date = models.DateTimeField(auto_now_add=True)
@@ -29,7 +29,7 @@ class Message(models.Model):
 
 
 class SentMessages(models.Model):
-    customer =  models.ForeignKey('Customer', null=False )
+    customer = models.ForeignKey('Customer', null=False )
     delang_message_id = models.IntegerField(null=False)
     raw_message = models.CharField(max_length=2000)
     message = models.ForeignKey('Message', null=False)
@@ -46,11 +46,11 @@ class Status(models.Model):
         return self.id, self.status_name
 
 
-class MessageType(models.Model):
-    type = models.CharField(max_length=200)
+class NotificationSetting(models.Model):
+    setting = models.CharField(max_length=200)
 
     def __str__(self):
-        return self.type
+        return self.setting
 
 
 class Store(models.Model):
