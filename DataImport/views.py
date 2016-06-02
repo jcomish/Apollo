@@ -30,7 +30,7 @@ def add_emp(request):
 
     results = services.import_users(request)
 
-    return HttpResponse('Success' + results)
+    return HttpResponse('Results: ' + results)
 
 
 @login_required
@@ -39,16 +39,15 @@ def add_stores(request):
 
     results = services.import_stores()
 
-    return HttpResponse('Success' + results)
+    return HttpResponse('Results: ' + results)
 
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def add_msg_types(request):
 
-    results = services.import_message_types()
-
-    return HttpResponse('Success' + results)
+    results = services.import_notification_settings()
+    return HttpResponse('Results: ' + results)
 
 
 @login_required
@@ -57,6 +56,15 @@ def add_status(request):
 
     results = services.import_statuses()
 
-    return HttpResponse('Success' + results)
+    return HttpResponse('Results: ' + results)
+
+
+@login_required
+@user_passes_test(lambda u: u.is_superuser)
+def add_messages(request):
+
+    results = services.import_messages()
+
+    return HttpResponse('Results: ' + results)
 
 

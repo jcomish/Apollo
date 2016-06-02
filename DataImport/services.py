@@ -4,8 +4,9 @@ from django.contrib.auth import get_user_model
 from UserProfile.models import Employee
 from django.contrib.auth.models import Group
 from SunLoanDelangIntegration.models import Store
-from SunLoanDelangIntegration.models import MessageType
+from SunLoanDelangIntegration.models import NotificationSetting
 from SunLoanDelangIntegration.models import Status
+from SunLoanDelangIntegration.models import Message
 User = get_user_model()
 
 # notes: CreateSuperUser - Import Stores - Import Users
@@ -74,6 +75,26 @@ def import_stores():
     return write
 
 
+def import_messages():
+    write = ''
+    messages = {'Welcome': 'Welcome to Sun Loan Notifications. Please call your Loan Coordinator at XXX-XXXX and give' \
+                ' them this verification code: ZZZZ', 'test': 'test'}
+
+    for name in messages:
+        if Message.objects.filter(name=name).exists():
+            write = 'end' # todo: will convert to array and store info per user
+        else:
+            try:
+                msg = Message.objects.create()
+                msg.name = name
+                msg.verbiage = messages[name]
+                msg.save()
+                write = "success"
+            except:
+                write = "error"
+    return write
+
+
 def import_statuses():
     write = ''
     statuses = ['New Customer', 'Awating Verification', 'Verified', ]
@@ -92,16 +113,16 @@ def import_statuses():
     return write
 
 
-def import_message_types():
+def import_notification_settings():
     write = ''
-    msg_types = ['Opt-Out of Notifications', 'Opt-In to SMS', 'Opt-In to Email', 'Opt-In to SMS and Email', ]
+    notification_settings = ['Opt-Out of Notifications', 'Opt-In to SMS', 'Opt-In to Email', 'Opt-In to SMS and Email', ]
 
-    for type in msg_types:
-        if MessageType.objects.filter(type=type).exists():
+    for setting in notification_settings:
+        if NotificationSetting.objects.filter(setting=setting).exists():
             write = 'end' # todo: will convert to array and store info per user
         else:
             try:
-                msg = MessageType.objects.create(type=type)
+                msg = NotificationSetting.objects.create(setting=setting)
                 msg.save()
 
                 write = "success"

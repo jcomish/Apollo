@@ -1,14 +1,14 @@
 <div class="container" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" id="view">
     <div class="row">
-         <h4>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong>
-             <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit</a></h4>
+        <h4>Customer Details - <strong>{{ customer.first_name }}&nbsp;{{ customer.last_name }}</strong>
+            <a class="btn btn-med" href="/?customer_id={{ customer.id }}&action=edit" role="button">Edit</a></h4>
         <div class="col-md-6">
             <p>
             <ul>
                 <li><strong>Account ID: </strong>{{ customer.account_id }}</li>
                 <li><strong>Email Address: </strong>{{ customer.email_address }}</li>
                 <li><strong>Phone Number: </strong>{{ customer.phone_number }}</li>
-                <li><strong>Notifications Preference: </strong> {{ customer.messagetype }}</li>
+                <li><strong>Notifications Preference: </strong> {{ customer.notification_setting }}</li>
                 <li><strong>Customer Status: </strong> {{ customer.status.status_name }}</li>
                 </br>
                 <li><strong>Added: </strong> {{ customer.create_date }}</li>
@@ -17,12 +17,14 @@
         </div>
         <div class="col-md-6">
             {% if customer.status.id > 1 %}
-            <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="msg">Message Customer</a></br>
+                <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="msg">Message
+                    Customer</a></br>
             {% else %}
                 <form class="form-inline" action="/verify/?customer_id={{ customer.id }}" method="post" id="ver_code">
                     {% csrf_token %}
                     <input type="text" size="5" placeholder="Code" class="form-control" name="code">
-                    <input class="btn btn-primary" href="#" id="verify" type="submit" value="Verify Customer">&nbsp;{{ request.GET.validated }}
+                    <input class="btn btn-primary" href="#" id="verify" type="submit"
+                           value="Verify Customer">&nbsp;{{ request.GET.validated }}
                 </form>
             {% endif %}
             <a class="btn btn-primary" href="/" role="button" id="reload">Cancel &raquo;</a>

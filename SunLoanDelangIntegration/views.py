@@ -5,7 +5,6 @@ from .models import Customer
 from .forms import CustomerForm
 from UserProfile.models import Employee
 from .models import Store
-from . import services
 
 
 @login_required
@@ -17,7 +16,6 @@ def update(request):
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
     return HttpResponseRedirect('/')
-
 
 
 @login_required
@@ -39,6 +37,9 @@ def index(request):
         if (request.GET['action'] == 'edit') and ('customer_id' in request.GET):
             # todo: restrict access to storeid from customer object
             customer = Customer.objects.get(pk=request.GET['customer_id'])
+            Customer.objects.filter(**{'store': store_name, field + '__icontains': search}) \
+                .order_by('-create_date')[:10]
+
             form = CustomerForm(instance=customer)
             action = 'edit'
         else:
@@ -93,7 +94,6 @@ def search(request):
 
     else:
         return HttpResponseRedirect('/')
-
 
 
 @login_required
