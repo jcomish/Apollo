@@ -2,6 +2,7 @@ from random import randint
 from . import contact
 from . import sms
 from .models import SentMessages
+from .models import Message
 import logging
 
 contactLogging = logging.getLogger('contact_api')
@@ -35,17 +36,26 @@ def send_welcome_message(customer):
                           " them this verification code: " + str(customer.verification_code)
 
     # messageid = 1 for welcome message todo: retrieve welcome message id from DB
-    #  log_message(customer, 1, 1, welcome_sms) # todo: make a welcome message class abstracted to be the same as email
+    log_message(customer, 1, welcome_sms) # todo: make a welcome message class abstracted to be the same as email
     welcome_sms.send()
+    log_message(customer, 1, welcome_sms) # todo: make a welcome message class abstracted to be the same as email
 
     return welcome_sms.messageId
 
 
-def log_message(customer, message_type, message_id, message):
-    cust_message = SentMessages()
-    cust_message.customer_id = customer.id
-    cust_message.raw_message = message.message
-    cust_message.delang_message_id = message.messageId
-    cust_message.message = message_id
+def log_message(customer, message_type, message):
 
-    return True
+    # todo: change to not null
+    if message_type == 1:
+        my_message = Message.objects.get(pk=message_type)
+        cust_message = SentMessages()
+        cust_message.customer_id = customer.id
+        cust_message.raw_message = message.message
+        cust_message.delang_message_id = message.messageId
+        cust_message.message = my_message
+        cust_message.save()
+        cust_message_id = cust_message.id
+
+        return cust_message_id
+
+    return False
