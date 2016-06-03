@@ -6,6 +6,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=12)
     # todo: split phonenumber up into area code and number then concatenate with +1 when SMS
+    # todo: timezone to CST - maybe base off browser due to stores locations
     email_address = models.EmailField()
     account_id = models.CharField(max_length=20, default='')
     store = models.ForeignKey('Store', default=1)

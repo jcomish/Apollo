@@ -3,6 +3,7 @@ from django.forms import ModelForm
 from .models import Customer
 from django.utils.translation import ugettext_lazy as _
 from . import services
+from .models import SentMessages
 
 
 class CustomerForm(ModelForm):
@@ -43,8 +44,17 @@ class CustomerForm(ModelForm):
                 customer.phone_number = self.data.get('phone_number')
                 customer.account_id = self.data.get('account_id')
                 customer.email_address = self.data.get('email_address')
+                # check old notification settings did it change?
                 customer.notification_setting_id = self.data.get('notification_setting')
                 customer.save()
+
+                if int(customer.id) > 0 and int(customer.delang_contact_id) > 0:
+
+                    # check to see if welcome message has been sent
+                    try:
+                        SentMessages.objects.get(customer_id=customer.id, message_id=1, delang_message_id__gt=0)
+                    except SentMessages.DoesNotExist:
+                        services.send_welcome_message(customer)
 
                 return customer.id
             else:

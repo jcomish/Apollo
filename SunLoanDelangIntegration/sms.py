@@ -24,7 +24,7 @@ class SMS(object):
             content.text = self.message
             recipient_contacts = SubElement(root, 'RecipientContacts')
             recipient_contacts_int = SubElement(recipient_contacts, 'int')
-            recipient_contacts_int.text = self.contactID
+            recipient_contacts_int.text = str(self.contactID)
 
         elif len(self.phoneNumber) > 1:
             root = Element('Message')
@@ -39,14 +39,17 @@ class SMS(object):
 
         if root != '':
             # Add Try Catch Logic and also input validation for Message and Phone Number
-            response = requests.post(endpoint, data=tostring(root), headers=self.headers)
-            status_code = response.status_code
+            try:
+                response = requests.post(endpoint, data=tostring(root), headers=self.headers)
+                status_code = response.status_code
 
-            if status_code == 200:
-                tree = ET.fromstring(response.content)
-                for elem in tree.iter():
-                    if elem.tag == "int":
-                        self.messageId = elem.text
+                if status_code == 200:
+                    tree = ET.fromstring(response.content)
+                    for elem in tree.iter():
+                        if elem.tag == "int":
+                            self.messageId = elem.text
+            except Exception as e:
+                return e
 
                         # Sample Response from Delange
                         # <Message>
