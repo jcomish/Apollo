@@ -35,7 +35,7 @@ def send_welcome_message(customer):
                           " them this verification code: " + str(customer.verification_code)
 
     # messageid = 1 for welcome message todo: retrieve welcome message id from DB
-    log_message(customer, 1, 1, welcome_sms) # todo: make a welcome message class abstracted to be the same as email
+    #  log_message(customer, 1, 1, welcome_sms) # todo: make a welcome message class abstracted to be the same as email
     welcome_sms.send()
 
     return welcome_sms.messageId
@@ -47,6 +47,5 @@ def log_message(customer, message_type, message_id, message):
     cust_message.raw_message = message.message
     cust_message.delang_message_id = message.messageId
     cust_message.message = message_id
-
 
     return True

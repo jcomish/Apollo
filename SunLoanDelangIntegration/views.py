@@ -71,19 +71,20 @@ def search(request):
     employee = Employee.objects.get(user_id=request.user.id)
     store_name = Store.objects.get(pk=employee.store_id)
     action = 'add'
-    verification_code = 'none'
 
     if request.method == 'POST':
 
-        search = request.POST.get('search')
+        search_string = request.POST.get('search')
+        form = CustomerForm(initial={'store': employee.store_id, 'user_id': request.user.id})
         field = request.POST.get('criteria')
-        customer_list = Customer.objects.filter(**{'store':store_name, field + '__icontains':search})\
+        customer_list = Customer.objects.filter(**{'store':store_name, field + '__icontains':search_string})\
             .order_by('-create_date')[:10]
 
         context = {
             'customer_list': customer_list,
             'employee': employee,
             'action': action,
+            'form': form,
         }
 
         return render(request, 'base.html', context=context)
