@@ -12,7 +12,7 @@ from .models import Store
 def update(request):
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
-        customer_id = customer_form.update_and_email()
+        customer_id = customer_form.update_and_email(request.POST.get('customer_id'))
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
     return HttpResponseRedirect('/')
@@ -37,9 +37,6 @@ def index(request):
         if (request.GET['action'] == 'edit') and ('customer_id' in request.GET):
             # todo: restrict access to storeid from customer object
             customer = Customer.objects.get(pk=request.GET['customer_id'])
-            Customer.objects.filter(**{'store': store_name, field + '__icontains': search}) \
-                .order_by('-create_date')[:10]
-
             form = CustomerForm(instance=customer)
             action = 'edit'
         else:
@@ -74,21 +71,21 @@ def search(request):
     employee = Employee.objects.get(user_id=request.user.id)
     store_name = Store.objects.get(pk=employee.store_id)
     action = 'add'
-    verification_code = 'none'
 
     if request.method == 'POST':
 
-        search = request.POST.get('search')
+        search_string = request.POST.get('search')
+        form = CustomerForm(initial={'store': employee.store_id, 'user_id': request.user.id})
         field = request.POST.get('criteria')
-        customer_list = Customer.objects.filter(**{'store':store_name,field + '__icontains':search})\
+        customer_list = Customer.objects.filter(**{'store':store_name, field + '__icontains':search_string})\
             .order_by('-create_date')[:10]
 
         context = {
             'customer_list': customer_list,
             'employee': employee,
             'action': action,
+            'form': form,
         }
-
 
         return render(request, 'base.html', context=context)
 

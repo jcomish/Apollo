@@ -5,9 +5,9 @@
         <form class="form-inline" action="/search/" method="post">
             {% csrf_token %}
             <a class="btn btn-primary" href="#" role="button" id="add">Add Customer</a>&nbsp;&nbsp;or&nbsp;&nbsp;
-            <select name="criteria">
-                        <option value="last_name">Last Name</option>
+            <select name="criteria" class="form-control">
                         <option value="first_name">First Name</option>
+                        <option value="last_name">Last Name</option>
                         <option value="phone_number">Phone Number</option>
                         <option value="account_id">Account Number</option>
                         <option value="email_address">Email Address</option>

@@ -6,6 +6,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=12)
     # todo: split phonenumber up into area code and number then concatenate with +1 when SMS
+    # todo: timezone to CST - maybe base off browser due to stores locations
     email_address = models.EmailField()
     account_id = models.CharField(max_length=20, default='')
     store = models.ForeignKey('Store', default=1)
@@ -28,9 +29,16 @@ class Message(models.Model):
         return self.name
 
 
+class MessageType(models.Model):
+    name = models.CharField(max_length=10)
+
+    def __self__(self):
+        return self.name
+
+
 class SentMessages(models.Model):
     customer = models.ForeignKey('Customer', null=False )
-    delang_message_id = models.IntegerField(null=False)
+    delang_message_id = models.IntegerField(null=False) # will log 0 for failures. todo: need monitoring for 0's
     raw_message = models.CharField(max_length=2000)
     message = models.ForeignKey('Message', null=False)
     date_sent = models.DateField(auto_now_add=True)
