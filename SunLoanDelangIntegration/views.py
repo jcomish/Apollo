@@ -5,7 +5,8 @@ from .models import Customer
 from .forms import CustomerForm
 from UserProfile.models import Employee
 from .models import Store
-
+from .models import Message
+from . import services
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
@@ -97,10 +98,11 @@ def search(request):
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def view(request):
     employee = Employee.objects.get(user_id=request.user.id)
-    store_name = Store.objects.get(pk=employee.store_id)
+    notifications = Message.objects.all().exclude(name='Welcome')
 
     context = {
         'employee': employee,
+        'notifications': notifications,
     }
 
     if 'customer_id' in request.GET:
@@ -112,8 +114,11 @@ def view(request):
         context.update({'customer': customer,})
 
     if request.method == 'POST':
-        customer_form = CustomerForm(request.POST)
-        customer_id = customer_form.save_and_email()
+        customer_id = request.POST.get('cust_id')
+        message_id = request.POST.get('message')
+
+        services.send_message(customer_id, message_id)
+
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
     return render(request, 'base_view.html', context=context)

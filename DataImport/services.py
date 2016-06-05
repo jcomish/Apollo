@@ -78,7 +78,8 @@ def import_stores():
 def import_messages():
     write = ''
     messages = {'Welcome': 'Welcome to Sun Loan Notifications. Please call your Loan Coordinator at XXX-XXXX and give' \
-                ' them this verification code: ZZZZ', 'test': 'test'}
+                ' them this verification code: ZZZZ', 'Payment Due': 'Please Contact XXXXX in order to make a payment today',
+                'Refinance Reminder': 'Refinance today', 'Former Borrower Message': 'As a valued customer, we are offering XXXX'}
 
     for name in messages:
         if Message.objects.filter(name=name).exists():

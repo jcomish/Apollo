@@ -3,6 +3,7 @@ from . import contact
 from . import sms
 from .models import SentMessages
 from .models import Message
+from .models import Customer
 import logging
 
 contactLogging = logging.getLogger('contact_api')
@@ -43,10 +44,27 @@ def send_welcome_message(customer):
     return welcome_sms.messageId
 
 
+def send_message(customer_id, message_id):
+    customer = Customer.objects.get(pk=customer_id)
+    message = Message.objects.get(pk=message_id)
+    sms_message = sms.SMS()
+    sms_message.contactID = customer.delang_contact_id
+    # todo: retrieve store api key and phone number
+    # todo: retrieve welcome message from model and find and replace
+    sms_message.message = message.verbiage
+
+    # messageid = 1 for welcome message todo: retrieve welcome message id from DB
+    log_message(customer, message.id, sms_message) # todo: make a welcome message class abstracted to be the same as email
+    sms_message.send()
+    log_message(customer, message.id, sms_message) # todo: make a welcome message class abstracted to be the same as email
+
+    return sms_message.messageId
+
+
 def log_message(customer, message_type, message):
 
     # todo: change to not null
-    if message_type == 1:
+    if message_type is not None:
         my_message = Message.objects.get(pk=message_type)
         cust_message = SentMessages()
         cust_message.customer_id = customer.id

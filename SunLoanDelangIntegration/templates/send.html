@@ -10,19 +10,20 @@
                 <strong>Email Address: </strong>{{ customer.email_address }} &nbsp;&nbsp;&nbsp; <strong>Phone
                 Number: </strong>{{ customer.phone_number }}
                 </br>
-                <form class="form-inline" action="/" method="post">
+                <form class="form-inline" action="/view/?customer_id={{ customer.id }}" method="post">
+                {% csrf_token %}
                     </br>
-                    <select name="templates" class="form-control">
-                        <option value="">-- Select Notification -- </option>
-                        <option value="due">Payment Due</option>
-                        <option value="reminder">Refinance Reminder</option>
-                        <option value="former">Former Borrower Message</option>
+                    <select name="message" class="form-control">
+                        <option value="">-- Select Notification --</option>
+                        {% for message in notifications %}
+                            <option value="{{ message.id }}">{{ message.name }}</option>
+                        {% endfor %}
                     </select></br></br>
-                    <input class="btn btn-primary" href="#" id="notify" type="submit" value="Send Notification">
+                    <input type="hidden" value="{{ customer.id }}" name="cust_id">
+                    <input class="btn btn-primary" id="notify" type="submit" value="Send Notification">
                 </form>
                 </br>
                 <a class="btn btn-primary" href="/" role="button" id="reload">Cancel</a>
-
             </div>
             </p>
         </div>
