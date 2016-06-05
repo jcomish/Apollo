@@ -11,7 +11,7 @@
                 Number: </strong>{{ customer.phone_number }}
                 </br>
                 <form class="form-inline" action="/view/?customer_id={{ customer.id }}" method="post">
-                {% csrf_token %}
+                    {% csrf_token %}
                     </br>
                     <select name="message" class="form-control">
                         <option value="">-- Select Notification --</option>
@@ -21,12 +21,23 @@
                     </select></br></br>
                     <input type="hidden" value="{{ customer.id }}" name="cust_id">
                     <input class="btn btn-primary" id="notify" type="submit" value="Send Notification">
+                    <a class="btn btn-primary" href="/" role="button" id="reload">Cancel</a>
                 </form>
-                </br>
-                <a class="btn btn-primary" href="/" role="button" id="reload">Cancel</a>
+
             </div>
             </p>
         </div>
         <hr>
+        <div class="row">
+            <h4>History</h4>
+            {% if history_list %}
+                <ul>
+                    {% for history in history_list %}
+                        <li>{{ history.date_sent }}&nbsp;-&nbsp;{{ history.message.name }}&nbsp;-&nbsp;{{ history.message.verbiage }}</li>
+                    {% endfor %}
+                </ul>
+
+            {% endif %}
+        </div>
     </div>
 </div>

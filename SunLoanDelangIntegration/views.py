@@ -6,6 +6,7 @@ from .forms import CustomerForm
 from UserProfile.models import Employee
 from .models import Store
 from .models import Message
+from .models import SentMessages
 from . import services
 
 @login_required
@@ -116,7 +117,36 @@ def view(request):
     if request.method == 'POST':
         customer_id = request.POST.get('cust_id')
         message_id = request.POST.get('message')
+        services.send_message(customer_id, message_id)
 
+        return HttpResponseRedirect('/?customer_id=' + str(customer_id))
+
+    return render(request, 'base_view.html', context=context)
+
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
+def history(request):
+    employee = Employee.objects.get(user_id=request.user.id)
+    notifications = Message.objects.all().exclude(name='Welcome')
+    context = {
+        'employee': employee,
+        'notifications': notifications,
+    }
+
+    if 'customer_id' in request.GET:
+        # todo: restrict access to storeid from customer object
+        try:
+            customer = Customer.objects.get(pk=request.GET['customer_id'])
+            history_list = SentMessages.objects.filter(customer=customer).order_by('-date_sent')[:10]
+        except Exception as e:
+            customer = e
+            history_list = ''
+        context.update({'customer': customer, 'history_list' : history_list})
+
+    if request.method == 'POST':
+        customer_id = request.POST.get('cust_id')
+        message_id = request.POST.get('message')
         services.send_message(customer_id, message_id)
 
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
