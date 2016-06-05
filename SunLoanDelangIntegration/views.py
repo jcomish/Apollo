@@ -138,7 +138,7 @@ def history(request):
         # todo: restrict access to storeid from customer object
         try:
             customer = Customer.objects.get(pk=request.GET['customer_id'])
-            history_list = SentMessages.objects.filter(customer=customer).order_by('-date_sent')[:10]
+            history_list = SentMessages.objects.filter(customer=customer).exclude(delang_message_id=0).order_by('-date_sent')[:10]
         except Exception as e:
             customer = e
             history_list = ''
