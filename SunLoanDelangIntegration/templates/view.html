@@ -19,7 +19,7 @@
             {% if customer.status.id > 1 %}
                 <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="msg">Message
                     Customer</a></br>
-                <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}&history=true" role="button" id="hist">View Message
+                <a class="btn btn-primary" href="/history/?customer_id={{ customer.id }}&history=true" role="button" id="hist">View Message
                     History</a></br>
             {% else %}
                  <a class="nav-bar" href="../assets/PDF/Customer%20Contract%20Request%20Form.pdf" download="Contract.pdf">Notification Opt-In Form</a>
