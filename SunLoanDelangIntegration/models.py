@@ -21,6 +21,15 @@ class Customer(models.Model):
         return self.first_name, self.last_name, self.email_address
 
 
+class CustomerPDF(models.Model):
+    customer_id = models.ForeignKey('Customer')
+    path = models.CharField(max_length=500)
+    create_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.customer_id, self.path
+
+
 class Message(models.Model):
     name = models.CharField(max_length=200)
     verbiage = models.CharField(max_length=2000)

@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import Customer
 from .forms import CustomerForm
+from .models import CustomerPDF
 from UserProfile.models import Employee
 from .models import Store
 from .models import Message
@@ -58,7 +59,9 @@ def index(request):
     if ('customer_id' in request.GET) and (action != 'edit'):
         # todo: restrict access to storeid from customer object
         customer = Customer.objects.get(pk=request.GET['customer_id'])
+        contract = CustomerPDF.objects.get(customer_id=customer.id)
         context.update({'customer':customer,})
+        context.update({'contract': contract,})
 
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)

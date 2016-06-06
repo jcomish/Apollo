@@ -16,7 +16,7 @@
             </p>
         </div>
         <div class="col-md-6">
-            <a class="nav-bar" href="../assets/PDF/Customer%20Contract%20Request%20Form.pdf" download="Contract.pdf">Notification
+            <a class="nav-bar" href="../{{ contract.path }}" download="Contract.pdf">Notification
                 Opt-In Form</a><br>
 
             {% if customer.status.id > 1 %}
