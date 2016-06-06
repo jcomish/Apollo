@@ -8,8 +8,8 @@ from django.contrib.staticfiles.templatetags.staticfiles import static
 import datetime
 
 
-def generate_doc(customer):
 
+def generate_doc(customer):
     customer = customer
     doc = SimpleDocTemplate(str(customer.id) + "_form_letter" + str(datetime.datetime.now()) + ".pdf", pagesize=letter,
                             rightMargin=50, leftMargin=50,
@@ -18,9 +18,8 @@ def generate_doc(customer):
     logo = "http://localhost:8000" + static('logo.png')
     # todo PROD: update for production use
 
-    formatted_time = time.ctime()
-    full_name = customer.first_name + " " + customer.last_name
 
+    formatted_date = str(time.strftime("%d/%m/%Y"))
     im = Image(logo, 1.5 * inch, 1.5 * inch)
     story.append(im)
 
@@ -32,9 +31,7 @@ def generate_doc(customer):
 
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
-    ptext = '<font size=12>%s</font>' % formatted_time
 
-    story.append(Paragraph(ptext, styles["Normal"]))
     story.append(Spacer(1, 12))
 
     # Create return address
@@ -46,24 +43,58 @@ def generate_doc(customer):
     story.append(Spacer(1, 12))
     story.append(Paragraph(ptext, title_style["Bold-Cent"]))
     story.append(Spacer(1, 12))
+    story.append(Spacer(1, 12))
 
     heading_about = '<font size=12>About</font>'
     story.append(Paragraph(heading_about, heading_style["Bold"]))
     story.append(Spacer(1, 12))
 
     ptext = '<font size=10>Sun Loan Company offers, as an additional convenience to you, the ability' \
-            'to receive Short Message Service (SMS) messages (also known as text.......</font>'
+            'to receive Short Message Service (SMS) messages (also known as text messages) and electronic mail ' \
+            '(email). Generally, the messages that we would send will provide you with information about your account' \
+            ', or will provide you with information and Sun Loan Company offers or promotions</font>'
     story.append(Paragraph(ptext, styles["Justify"]))
     story.append(Spacer(1, 12))
 
     heading_about = '<font size=12>How to Enroll</font>'
     story.append(Paragraph(heading_about, heading_style["Bold"]))
-    story.append(Spacer(1, 12))
 
-    ptext = '<font size=12>Thank you very much and we look forward to serving you.</font>'
+    ptext = '<font size=10>To sign up to receive SMS messages and/or email from Sun Loan Company please check the ' \
+            'box below:</font>'
+    story.append(Spacer(1, 12))
+    story.append(Paragraph(ptext, styles["Justify"]))
+    ptext = '<font size=10>[ ]</font>'
+
+    story.append(Spacer(1, 12))
     story.append(Paragraph(ptext, styles["Justify"]))
     story.append(Spacer(1, 12))
-    ptext = '<font size=12>Sincerely,</font>'
+
+    ptext = '<font size=10>By checking the box above, I understand that I am choosing to receive SMS' \
+            ' messages/email from Sun Loan Company. I understand that any such SMS messages/email ' \
+            'will be subject to whatever rates and charges associated with are my responsibility and ' \
+            'not the responsibility of Sun Loan Company. My signature shall include an electronic,' \
+            ' digital or handwritten form of signature, to the extent that such form of signature ' \
+            'is recognized as a valid signature under applicable federal law or state contract law.' \
+            'I understand that I am not required to sign this agreement (directly or indirectly), or ' \
+            'to agree to enter into such an agreement as a condition of any loan or the purchase ' \
+            'of any property, goods, or services. Message and Data Rates May Apply.</font>'
+    story.append(Paragraph(ptext, styles["Justify"]))
+    story.append(Spacer(1, 12))
+
+    ptext = '<font size=10>Cell Number: ' + customer.phone_number + '</font>'
+    story.append(Paragraph(ptext, styles["Justify"]))
+    story.append(Spacer(1, 12))
+
+    ptext = '<font size=10>Printed Name: ' + customer.first_name + ' ' + customer.last_name + '</font>'
+    story.append(Paragraph(ptext, styles["Justify"]))
+    story.append(Spacer(1, 12))
+    ptext = '<font size=10>Signed(SMS)_______________________________________________________________</font>'
+    story.append(Paragraph(ptext, styles["Justify"]))
+    story.append(Spacer(1, 12))
+    ptext = '<font size=10>Signed(Email)_____________________________________________________________</font>'
+    story.append(Paragraph(ptext, styles["Justify"]))
+    story.append(Spacer(1, 12))
+    ptext = '<font size=12>Date: ' + formatted_date + '</font>'
     story.append(Paragraph(ptext, styles["Normal"]))
     story.append(Spacer(1, 48))
     ptext = '<font size=12>Sun Loan Inc</font>'
@@ -72,4 +103,4 @@ def generate_doc(customer):
     doc.build(story)
 
 
-# http://www.blog.pythonlibrary.org/2010/03/08/a-simple-step-by-step-reportlab-tutorial/
+    # http://www.blog.pythonlibrary.org/2010/03/08/a-simple-step-by-step-reportlab-tutorial/
