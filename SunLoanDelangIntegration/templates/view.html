@@ -16,8 +16,16 @@
             </p>
         </div>
         <div class="col-md-6">
-            <a class="nav-bar" href="../{{ contract.path }}" download="Contract.pdf">Notification
+
+            {% if contract %}
+                {% for item in contract %}
+                <a class="nav-bar" href="../{{ item.path }}" download="Contract.pdf">Notification
                 Opt-In Form</a><br>
+                {% endfor %}
+            {% else %}
+                <a class="btn btn-primary" href="/contract/?customer_id={{ customer.id }}" role="button" id="msg">Generate
+                Opt-In Form</a></br>
+            {% endif %}
 
             {% if customer.status.id > 1 %}
                 <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="msg">Message

@@ -59,7 +59,7 @@ def index(request):
     if ('customer_id' in request.GET) and (action != 'edit'):
         # todo: restrict access to storeid from customer object
         customer = Customer.objects.get(pk=request.GET['customer_id'])
-        contract = CustomerPDF.objects.get(customer_id=customer.id)
+        contract = CustomerPDF.objects.filter(customer_id=customer.id).order_by('-create_date')[:1]
         context.update({'customer':customer,})
         context.update({'contract': contract,})
 
@@ -68,6 +68,33 @@ def index(request):
         customer_id = customer_form.save_and_email()
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
+    return render(request, 'base.html', context=context)
+
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
+def contract(request):
+    employee = Employee.objects.get(user_id=request.user.id)
+    notifications = Message.objects.all().exclude(name='Welcome')
+
+    context = {
+        'employee': employee,
+        'notifications': notifications,
+    }
+
+    if 'customer_id' in request.GET:
+        # todo: restrict access to storeid from customer object
+        try:
+            customer = Customer.objects.get(pk=request.GET['customer_id'])
+            pdf.generate_doc(customer)
+        except Exception as e:
+            customer = e
+
+        context.update({'customer': customer,})
+
+        return HttpResponseRedirect('/?customer_id=' + str(customer.id))
+
+    # todo: redirect to error page - contract could not be generated
     return render(request, 'base.html', context=context)
 
 
@@ -115,7 +142,6 @@ def view(request):
         # todo: restrict access to storeid from customer object
         try:
             customer = Customer.objects.get(pk=request.GET['customer_id'])
-            pdf.generate_doc(customer)
         except Exception as e:
             customer = e
         context.update({'customer': customer,})
