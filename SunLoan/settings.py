@@ -134,6 +134,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+# todo: Handle static files during production push -
+# https://docs.djangoproject.com/en/dev/howto/static-files/#configuring-static-files
+
 STATICFILES_DIRS = (BASE_DIR, 'static')
 
 

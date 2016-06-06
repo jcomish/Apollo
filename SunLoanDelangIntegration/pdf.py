@@ -1,30 +1,34 @@
 import time
-from reportlab.lib.enums import TA_JUSTIFY
+from reportlab.lib.enums import TA_JUSTIFY, TA_CENTER
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Image
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
+from django.contrib.staticfiles.templatetags.staticfiles import static
+import datetime
 
 
-def generate_doc():
+def generate_doc(customer):
 
-    doc = SimpleDocTemplate("form_letter.pdf", pagesize=letter,
-                            rightMargin=72, leftMargin=72,
-                            topMargin=72, bottomMargin=18)
+    customer = customer
+    doc = SimpleDocTemplate(str(customer.id) + "_form_letter" + str(datetime.datetime.now()) + ".pdf", pagesize=letter,
+                            rightMargin=50, leftMargin=50,
+                            topMargin=18, bottomMargin=18)
     story = []
-    logo = "assets/logo.png"
-    magName = "Pythonista"
-    issueNum = 12
-    subPrice = "99.00"
-    limitedDate = "03/05/2010"
-    freeGift = "tin foil hat"
+    logo = "http://localhost:8000" + static('logo.png')
+    # todo PROD: update for production use
 
     formatted_time = time.ctime()
-    full_name = "Mike Driscoll"
-    address_parts = ["411 State St.", "Marshalltown, IA 50158"]
+    full_name = customer.first_name + " " + customer.last_name
 
-    im = Image(logo, 2 * inch, 2 * inch)
+    im = Image(logo, 1.5 * inch, 1.5 * inch)
     story.append(im)
+
+    title_style = getSampleStyleSheet()
+    title_style.add(ParagraphStyle(name='Bold-Cent', fontName='Times-Bold', alignment=TA_CENTER))
+
+    heading_style = getSampleStyleSheet()
+    heading_style.add(ParagraphStyle(name='Bold', fontName='Times-Bold', alignment=TA_JUSTIFY))
 
     styles = getSampleStyleSheet()
     styles.add(ParagraphStyle(name='Justify', alignment=TA_JUSTIFY))
@@ -34,25 +38,26 @@ def generate_doc():
     story.append(Spacer(1, 12))
 
     # Create return address
-    ptext = '<font size=12>%s</font>' % full_name
-    story.append(Paragraph(ptext, styles["Normal"]))
-    for part in address_parts:
-        ptext = '<font size=12>%s</font>' % part.strip()
-        story.append(Paragraph(ptext, styles["Normal"]))
 
+    styles.add(ParagraphStyle(name='Center', alignment=TA_CENTER))
     story.append(Spacer(1, 12))
-    ptext = '<font size=12>Dear %s:</font>' % full_name.split()[0].strip()
-    story.append(Paragraph(ptext, styles["Normal"]))
+    ptext = '<font size=14>SHORT MESSAGE SERVICE (SMS)/EMAIL NOTICE AND OPT-IN FORM</font>'
+    # Dear %s:</font>' % full_name.split()[0].strip()
+    story.append(Spacer(1, 12))
+    story.append(Paragraph(ptext, title_style["Bold-Cent"]))
     story.append(Spacer(1, 12))
 
-    ptext = '<font size=12>We would like to welcome you to our subscriber base for %s Magazine! \
-            You will receive %s issues at the excellent introductory price of $%s. Please respond by\
-            %s to start receiving your subscription and get the following free gift: %s.</font>' % (magName,
-                                                                                                    issueNum,
-                                                                                                    subPrice,
-                                                                                                    limitedDate,
-                                                                                                    freeGift)
+    heading_about = '<font size=12>About</font>'
+    story.append(Paragraph(heading_about, heading_style["Bold"]))
+    story.append(Spacer(1, 12))
+
+    ptext = '<font size=10>Sun Loan Company offers, as an additional convenience to you, the ability' \
+            'to receive Short Message Service (SMS) messages (also known as text.......</font>'
     story.append(Paragraph(ptext, styles["Justify"]))
+    story.append(Spacer(1, 12))
+
+    heading_about = '<font size=12>How to Enroll</font>'
+    story.append(Paragraph(heading_about, heading_style["Bold"]))
     story.append(Spacer(1, 12))
 
     ptext = '<font size=12>Thank you very much and we look forward to serving you.</font>'
@@ -61,7 +66,7 @@ def generate_doc():
     ptext = '<font size=12>Sincerely,</font>'
     story.append(Paragraph(ptext, styles["Normal"]))
     story.append(Spacer(1, 48))
-    ptext = '<font size=12>Ima Sucker</font>'
+    ptext = '<font size=12>Sun Loan Inc</font>'
     story.append(Paragraph(ptext, styles["Normal"]))
     story.append(Spacer(1, 12))
     doc.build(story)

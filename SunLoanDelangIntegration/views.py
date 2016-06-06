@@ -8,6 +8,8 @@ from .models import Store
 from .models import Message
 from .models import SentMessages
 from . import services
+from . import pdf
+
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
@@ -28,7 +30,7 @@ def index(request):
     store_name = Store.objects.get(pk=employee.store_id)
     customer_list = Customer.objects.filter(store=store_name).order_by('-create_date')[:10]
     action = 'add'
-    verification_code = 'none'
+
 
     # todo: refactor all the if statements
     # todo: break out into a services file or other .py structure - getting messy
@@ -110,6 +112,7 @@ def view(request):
         # todo: restrict access to storeid from customer object
         try:
             customer = Customer.objects.get(pk=request.GET['customer_id'])
+            pdf.generate_doc(customer)
         except Exception as e:
             customer = e
         context.update({'customer': customer,})
