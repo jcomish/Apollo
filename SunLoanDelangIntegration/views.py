@@ -73,6 +73,31 @@ def index(request):
 
 @login_required
 @user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
+def code(request):
+    employee = Employee.objects.get(user_id=request.user.id)
+
+    context = {
+        'employee': employee,
+    }
+
+    if 'customer_id' in request.GET:
+        # todo: restrict access to storeid from customer object
+        try:
+            customer = Customer.objects.get(pk=request.GET['customer_id'])
+            services.send_welcome_message(customer)
+        except Exception as e:
+            customer = e
+
+        context.update({'customer': customer,})
+
+        return HttpResponseRedirect('/?customer_id=' + str(customer.id))
+
+    # todo: redirect to error page - contract could not be generated
+    return render(request, 'base.html', context=context)
+
+
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='employee').count() == 1)
 def contract(request):
     employee = Employee.objects.get(user_id=request.user.id)
     notifications = Message.objects.all().exclude(name='Welcome')

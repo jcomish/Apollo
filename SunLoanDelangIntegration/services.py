@@ -33,6 +33,7 @@ def send_welcome_message(customer):
     welcome_sms.contactID = customer.delang_contact_id
     # todo: retrieve store api key and phone number
     # todo: retrieve welcome message from model and find and replace
+    # todo: add try catch logic
     welcome_sms.message = "Welcome to Sun Loan Notifications. Please call your Loan Coordinator at XXX-XXXX and give" \
                           " them this verification code: " + str(customer.verification_code)
 

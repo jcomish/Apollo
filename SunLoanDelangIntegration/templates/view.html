@@ -34,6 +34,7 @@
                    id="hist">View Message
                     History</a></br>
             {% else %}
+                <a class="btn btn-primary" href="/code/?customer_id={{ customer.id }}" role="button" id="msg">Resend Verification Code</a></br>
                 <form class="form-inline" action="/verify/?customer_id={{ customer.id }}" method="post" id="ver_code">
                     {% csrf_token %}
                     <input type="text" size="5" placeholder="Code" class="form-control" name="code">
