@@ -5,6 +5,7 @@ from .models import SentMessages
 from .models import Message
 from .models import Customer
 import logging
+import datetime
 
 contactLogging = logging.getLogger('contact_api')
 
@@ -47,19 +48,27 @@ def send_welcome_message(customer):
 
 def send_message(customer_id, message_id):
     customer = Customer.objects.get(pk=customer_id)
-    message = Message.objects.get(pk=message_id)
-    sms_message = sms.SMS()
-    sms_message.contactID = customer.delang_contact_id
-    # todo: retrieve store api key and phone number
-    # todo: retrieve welcome message from model and find and replace
-    sms_message.message = message.verbiage
+    last_message = SentMessages.objects.filter(customer=customer).exclude(delang_message_id=0, message_id = 1).order_by('-date_sent')[:1]
+    offset = datetime.datetime.now()-datetime.timedelta(hours=24)
 
-    # messageid = 1 for welcome message todo: retrieve welcome message id from DB
-    log_message(customer, message.id, sms_message) # todo: make a welcome message class abstracted to be the same as email
-    sms_message.send()
-    log_message(customer, message.id, sms_message) # todo: make a welcome message class abstracted to be the same as email
+    if last_message:
+        for message in last_message:
+            if message.date_sent.replace(tzinfo=None) < offset:
+                    message = Message.objects.get(pk=message_id)
+                    sms_message = sms.SMS()
+                    sms_message.contactID = customer.delang_contact_id
+                    # todo: retrieve store api key and phone number
+                    # todo: retrieve welcome message from model and find and replace
+                    sms_message.message = message.verbiage
 
-    return sms_message.messageId
+                    # messageid = 1 for welcome message todo: retrieve welcome message id from DB
+                    log_message(customer, message.id, sms_message) # todo: make a welcome message class abstracted to be the same as email
+                    sms_message.send()
+                    log_message(customer, message.id, sms_message) # todo: make a welcome message class abstracted to be the same as email
+
+                    return sms_message.messageId
+    else:
+        return 0
 
 
 def log_message(customer, message_type, message):
