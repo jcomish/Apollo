@@ -73,22 +73,6 @@
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script>
-    $(document).ready(function () {
-        $("#add").click(function () {
-            $("#main").hide();
-            $("#new_cust").show();
-        });
-        $("#cancel").click(function () {
-            $("#main").show();
-            $("#new_cust").hide();
-        });
-    });
-    function isEmail(id_email) {
-        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        return regex.test(id_email);
-    }
-</script>
 </body>
 </html>
 

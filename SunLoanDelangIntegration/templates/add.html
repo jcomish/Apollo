@@ -6,12 +6,12 @@
             {% csrf_token %}
             <a class="btn btn-primary" href="#" role="button" id="add">Add Customer</a>&nbsp;&nbsp;or&nbsp;&nbsp;
             <select name="criteria" class="form-control">
-                        <option value="first_name">First Name</option>
-                        <option value="last_name">Last Name</option>
-                        <option value="phone_number">Phone Number</option>
-                        <option value="account_id">Account Number</option>
-                        <option value="email_address">Email Address</option>
-                    </select>
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="phone_number">Phone Number</option>
+                <option value="account_id">Account Number</option>
+                <option value="email_address">Email Address</option>
+            </select>
             <input type="text" placeholder="Lookup Customer" name="search" class="form-control">
             <input type="submit" href="/search" class="btn btn-primary" value="Search">
         </form>
@@ -27,8 +27,19 @@
             </table>
             </br>
             <a class="btn btn-primary" href="#" role="button" id="cancel">Cancel &raquo;</a>
-            <input class="btn btn-primary" href="#" id="create" type="submit" value="Create Customer">
+            <input class="btn btn-primary" id="create" type="submit" value="Create Customer"
+                   onclick="phonenumber(document.getElementById('id_phone_number'))">
         </form>
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-error">
+                        <input type="hidden" value="{{ error|escape }}" id="phone_error">
+
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
         </p>
     </div>
 </div>

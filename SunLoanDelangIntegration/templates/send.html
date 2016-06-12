@@ -33,7 +33,7 @@
             {% if history_list %}
                 <ul>
                     {% for history in history_list %}
-                        <li>{{ history.date_sent }}&nbsp;-&nbsp;{{ history.message.name }}&nbsp;-&nbsp;{{ history.message.verbiage }}</li>
+                        <li>{{ history.date_sent }}&nbsp;-&nbsp;{{ history.message.name }}&nbsp;-&nbsp;{{ history.message.status }}&nbsp;-&nbsp;{{ history.message.verbiage }}</li>
                     {% endfor %}
                 </ul>
 

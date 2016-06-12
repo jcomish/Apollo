@@ -65,7 +65,10 @@ def index(request):
 
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
-        customer_id = customer_form.save_and_email()
+        if customer_form.is_valid():
+            customer_id = customer_form.save_and_email()
+        else:
+            return render(request, 'base.html', {'form': customer_form})
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
     return render(request, 'base.html', context=context)

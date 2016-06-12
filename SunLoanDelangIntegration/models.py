@@ -1,10 +1,14 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 class Customer(models.Model):
+    phone_regex = RegexValidator(regex=r'^\d{9,10}$',
+                                 message="Phone number must be entered in the format: '9999999999'. /"
+                                         "Up to 10 digits allowed.")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=12)
+    phone_number = models.CharField(max_length=12,validators=[phone_regex], blank=True)
     # todo: split phonenumber up into area code and number then concatenate with +1 when SMS
     # todo: timezone to CST - maybe base off browser due to stores locations
     email_address = models.EmailField()
@@ -51,6 +55,7 @@ class SentMessages(models.Model):
     raw_message = models.CharField(max_length=2000)
     message = models.ForeignKey('Message', null=False)
     date_sent = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=100, default='Attempting')
 
     def __self__(self):
         return self.customer, self.message
