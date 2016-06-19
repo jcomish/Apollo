@@ -17,9 +17,13 @@ from . import pdf
 def update(request):
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
-        customer_id = customer_form.update_and_email(request.POST.get('customer_id'))
-        return HttpResponseRedirect('/?customer_id=' + str(customer_id))
-
+        if customer_form.is_valid():
+            customer_id = customer_form.update_and_email(request.POST.get('customer_id'))
+            return HttpResponseRedirect('/?customer_id=' + str(customer_id))
+        else:
+            return render(request, 'base.html', {'form': customer_form})
+            # todo: return to the update page load form data from user.
+        
     return HttpResponseRedirect('/')
 
 

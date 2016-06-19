@@ -1,17 +1,25 @@
-
- <div class="jumbotron">
-      <div class="container" id="cust_edit">
+<div class="jumbotron">
+    <div class="container" id="cust_edit">
         <p></br>Customer SMS and Email Notification Management System</p>
         <p>Edit Customer Info<br>
-            <form class="form-inline" action="/update/" method="post">
-                 <table>
-                    {% csrf_token %}
-                    {{ form.as_table }}
-                </table>
-          </br>
+        <form class="form-inline" action="/update/" method="post">
+            <table>
+                {% csrf_token %}
+                {{ form.as_table }}
+            </table>
+            </br>
             <input type="hidden" name="customer_id" value="{{ request.GET.customer_id }}">
             <a class="btn btn-primary" href="/" role="button" id="reload">Cancel &raquo;</a>
-            <input class="btn btn-primary" href="#" id="create" type="submit" value="Update Customer"></form>
-          </p>
-     </div>
- </div>
+            <input class="btn btn-primary" id="create" type="submit" value="Update Customer" onclick="phonenumber(document.getElementById('id_phone_number'))"></form>
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-error">
+                        <input type="hidden" value="{{ error|escape }}" id="phone_error">
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+        </p>
+    </div>
+</div>
