@@ -3,7 +3,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from SunLoanDelangIntegration import sms
+from SunLoanDelangIntegration import email
 from .forms import SMSForm
+from .forms import EmailForm
 
 
 # todo - lockdown to admins

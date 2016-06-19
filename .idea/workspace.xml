@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b8bdc802-b2f1-4559-b764-590b29aec227" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/email.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/edit.html" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/templates/edit.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/urls.py" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" afterPath="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DelangIntegrationTest/forms.py" afterPath="$PROJECT_DIR$/DelangIntegrationTest/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DelangIntegrationTest/views.py" afterPath="$PROJECT_DIR$/DelangIntegrationTest/views.py" />
     </list>
     <ignored path="SunLoan.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,50 +43,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="decorators.py" pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/django/contrib/auth/decorators.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1710">
-              <caret line="114" column="5" selection-start-line="114" selection-start-column="5" selection-end-line="114" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="services.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/services.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="72" column="0" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pdf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/pdf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1515">
-              <caret line="101" column="61" selection-start-line="101" selection-start-column="55" selection-end-line="101" selection-end-column="61" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="sms.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/sms.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -99,7 +53,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="email.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="email.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/email.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="585">
@@ -111,18 +65,30 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/urls.py">
+      <file leaf-file-name="test.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/templates/test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state relative-caret-position="750">
+              <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="tests.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/tests.py">
+        <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/tests.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -131,11 +97,43 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="edit.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/edit.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="10" selection-start-line="23" selection-start-column="10" selection-end-line="23" selection-end-column="10" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -177,7 +175,6 @@
         <option value="$PROJECT_DIR$/DelangIntegrationTest/apps.py" />
         <option value="$PROJECT_DIR$/DelangIntegrationTest/models.py" />
         <option value="$PROJECT_DIR$/DelangIntegrationTest/templates/base.html" />
-        <option value="$PROJECT_DIR$/DelangIntegrationTest/forms.py" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/admin.py" />
         <option value="$PROJECT_DIR$/UserProfile/forms.py" />
         <option value="$PROJECT_DIR$/UserProfile/models.py" />
@@ -187,7 +184,6 @@
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/apps.py" />
         <option value="$PROJECT_DIR$/DataImport/templates/user.html" />
         <option value="$PROJECT_DIR$/DelangIntegrationTest/templates/test.html" />
-        <option value="$PROJECT_DIR$/DelangIntegrationTest/views.py" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/invalid_customer.html" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/templates/services.py" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/contact.py" />
@@ -215,6 +211,8 @@
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/views.py" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/urls.py" />
         <option value="$PROJECT_DIR$/SunLoanDelangIntegration/email.py" />
+        <option value="$PROJECT_DIR$/DelangIntegrationTest/forms.py" />
+        <option value="$PROJECT_DIR$/DelangIntegrationTest/views.py" />
       </list>
     </option>
   </component>
@@ -310,7 +308,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="SunLoanDelangIntegration" />
+              <option name="myItemId" value="DelangIntegrationTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Apollo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DelangIntegrationTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="templates" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -619,13 +635,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1463361031533</updated>
-    </task>
-    <task id="LOCAL-00004" summary="corrected js and css links from base.html page. Also moved jquery script to bottom of page of faster load.">
-      <created>1464014614563</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1464014614563</updated>
     </task>
     <task id="LOCAL-00005" summary="Added DelangInegrationTest project in order to test DelangEmobile APIs outside the main application">
       <created>1464017326323</created>
@@ -963,7 +972,14 @@
       <option name="project" value="LOCAL" />
       <updated>1465771621682</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Added Email class">
+      <created>1466366468445</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1466366468446</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1036,7 +1052,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added Error handling for contact create when 400 strip previous contactid and store" />
     <MESSAGE value="used customer delang contact id to send sms initial verification code" />
     <MESSAGE value="Added Verification Code Logic" />
     <MESSAGE value="Added Search Functionality" />
@@ -1061,14 +1076,15 @@
     <MESSAGE value="Added resend verification code logic" />
     <MESSAGE value="Last Message Date Check" />
     <MESSAGE value="Added Javascript to handle phone number error and redirect" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Javascript to handle phone number error and redirect" />
+    <MESSAGE value="Added Email class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Email class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="python-line">
           <url>file://$PROJECT_DIR$/DelangIntegrationTest/views.py</url>
-          <line>29</line>
+          <line>31</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="python-line">
@@ -1111,6 +1127,10 @@
           <line>43</line>
           <option name="timeStamp" value="113" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="python-line">
+          <url>file://$PROJECT_DIR$/DelangIntegrationTest/views.py</url>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="django-line">
           <url>file://$PROJECT_DIR$/SunLoanDelangIntegration/templates/send.html</url>
           <line>9</line>
@@ -1129,7 +1149,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="114" />
+      <option name="time" value="115" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
@@ -1143,33 +1163,10 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/DataImport/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DataImport/templates/data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/migrations/0013_auto_20160601_2154.py" />
-    <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/migrations/0012_auto_20160601_2151.py" />
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/migrations/0009_auto_20160531_1923.py" />
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/migrations/0010_auto_20160601_2146.py" />
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/migrations/0001_squashed_0013_auto_20160601_2154.py" />
     <entry file="file://$PROJECT_DIR$/SunLoanDelangIntegration/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1347,14 +1344,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SunLoan/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="271">
@@ -1500,6 +1489,58 @@
           <caret line="39" column="57" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/templates/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="750">
+          <caret line="50" column="34" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/tests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="37" selection-start-line="13" selection-start-column="37" selection-end-line="13" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DelangIntegrationTest/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
