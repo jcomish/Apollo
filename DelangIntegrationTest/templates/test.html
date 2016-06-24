@@ -39,7 +39,12 @@
         <form action="/test/" method="post">
             {% csrf_token %}
             {{ form }}
-            <input type="submit" value="Submit"/>
+            <input type="submit" name="action" value="Submit SMS"/>
+        </form>
+        <form action="/test/" method="post">
+            {% csrf_token %}
+            {{ email_form }}
+            <input type="submit" name="action" value="Submit Email"/>
         </form>
         </p>
     </div>

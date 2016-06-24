@@ -19,22 +19,38 @@ def index(request):
 
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = SMSForm(request.POST)
-        # check whether it's valid:
-        if form.is_valid():
-            name = form.cleaned_data['your_name']
-            mySMS = sms.SMS()
-            mySMS.message = form.cleaned_data['message']
-            mySMS.phoneNumber = form.cleaned_data['phone_number']
-            mySMS.send()
+        if request.POST['action'] == 'Submit SMS':
 
-            return HttpResponseRedirect('/test/?id=' + mySMS.messageId)
+        # create a form instance and populate it with data from the request:
+            form = SMSForm(request.POST)
+        # check whether it's valid:
+            if form.is_valid():
+                name = form.cleaned_data['your_name']
+                mySMS = sms.SMS()
+                mySMS.message = form.cleaned_data['message']
+                mySMS.phoneNumber = form.cleaned_data['phone_number']
+                mySMS.send()
+
+                return HttpResponseRedirect('/test/?id=' + str(mySMS.messageId))
+                # do this
+        elif request.POST['action'] == 'Submit Email':
+            email_form = EmailForm(request.POST)
+            # do that
+            if email_form.is_valid():
+                name = email_form.cleaned_data['your_name']
+                myEmail = email.Email()
+                myEmail.message = email_form.cleaned_data['message']
+                myEmail.email_address = email_form.cleaned_data['email_address']
+                myEmail.subject = email_form.cleaned_data['subject']
+                myEmail.send()
+
+                return HttpResponseRedirect('/test/?id=' + str(myEmail.messageId))
 
     else:
         form = SMSForm()
+        email_form = EmailForm()
 
         context = {
-            'employee': employee, 'form': form,}
+            'employee': employee, 'form': form, 'email_form': email_form}
 
     return render(request, 'test.html', context)

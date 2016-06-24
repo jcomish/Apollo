@@ -5,11 +5,11 @@ from xml.etree.ElementTree import Element, SubElement, tostring
 
 class Email(object):
     def __init__(self):
-        self.baseEndPoint = "http://sunloanapi.dlangemobile.com/xml/messages/"
+        self.baseEndPoint = "http://sunloanapi.dlangemobile.com/xml/email/"
         self.contentType = ""
         self.message = "python test"
         self.subject = "Test Subject"
-        self.emailaddress = "test@test.com"
+        self.email_address = "test@test.com"
         self.apiKey = "8dba905330fa4d5a9b5193c4cedb540c"
         self.headers = {'Content-Type': 'application/xml'}
         self.messageId = 0
@@ -17,7 +17,7 @@ class Email(object):
 
     def send(self):
         # http://sunloanapi.dlangemobile.com/xml/messages/8dba905330fa4d5a9b5193c4cedb540c/longcode
-        endpoint = self.baseEndPoint + self.apiKey + "/longcode"
+        endpoint = self.baseEndPoint + self.apiKey + "/send"
 
         if int(self.contactID) > 1:
             root = Element('EmailInfo')
@@ -29,15 +29,15 @@ class Email(object):
             recipient_contacts_int = SubElement(recipient_contacts, 'int')
             recipient_contacts_int.text = str(self.contactID)
 
-        elif len(self.phoneNumber) > 1:
+        elif len(self.email_address) > 1:
             root = Element('EmailInfo')
-            content = SubElement(root, 'Content')
-            content.text = self.message
             subject = SubElement(root, 'Subject')
             subject.text = self.subject
+            content = SubElement(root, 'Content')
+            content.text = self.message
             email_addresses = SubElement(root, 'EmailAddresses')
             email_address_string = SubElement(email_addresses, 'string')
-            email_address_string.text = self.emailaddress
+            email_address_string.text = self.email_address
         else:
             self.messageId = -1
             root = ''
@@ -45,7 +45,8 @@ class Email(object):
         if root != '':
             # Add Try Catch Logic and also input validation for Message and Phone Number
             try:
-                response = requests.post(endpoint, data=tostring(root), headers=self.headers)
+                data = tostring(root)
+                response = requests.post(endpoint, data=data, headers=self.headers)
                 status_code = response.status_code
 
                 if status_code == 200:
