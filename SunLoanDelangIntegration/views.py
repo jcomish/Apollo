@@ -70,7 +70,7 @@ def index(request):
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
         if customer_form.is_valid():
-            customer_id = customer_form.save_and_email()
+            customer_id = customer_form.save_and_notify()
         else:
             return render(request, 'base.html', {'form': customer_form})
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
@@ -91,7 +91,7 @@ def code(request):
         # todo: restrict access to storeid from customer object
         try:
             customer = Customer.objects.get(pk=request.GET['customer_id'])
-            services.send_welcome_message(customer)
+            services.send_sms_welcome_message(customer)
         except Exception as e:
             customer = e
 

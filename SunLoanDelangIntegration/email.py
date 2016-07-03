@@ -16,7 +16,7 @@ class Email(object):
         self.contactID = 0
 
     def send(self):
-        # http://sunloanapi.dlangemobile.com/xml/messages/8dba905330fa4d5a9b5193c4cedb540c/longcode
+        # http://sunloanapi.dlangemobile.com/xml/email/8dba905330fa4d5a9b5193c4cedb540c/
         endpoint = self.baseEndPoint + self.apiKey + "/send"
 
         if int(self.contactID) > 1:

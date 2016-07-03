@@ -18,7 +18,8 @@ class Customer(models.Model):
     user_id = models.IntegerField(default=0)
     notification_setting = models.ForeignKey('NotificationSetting', default=1)
     verification_code = models.IntegerField(default=0)
-    delang_contact_id = models.IntegerField(default=0)
+    delang_sms_contact_id = models.IntegerField(default=0)
+    delang_email_contact_id = models.IntegerField(default=0)
     create_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

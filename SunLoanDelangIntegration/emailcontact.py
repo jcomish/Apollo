@@ -5,24 +5,31 @@ import logging
 
 contactLogging = logging.getLogger('contact_api')
 
+import requests
+from xml.etree import ElementTree as ET
+from xml.etree.ElementTree import Element, SubElement, tostring
+import logging
 
-class Contact(object):
+contactLogging = logging.getLogger('contact_api')
+
+
+class EmailContact(object):
     def __init__(self):
-        self.baseEndPoint = "http://sunloanapi.dlangemobile.com/xml/contacts/"
+        self.baseEndPoint = "http://sunloanapi.dlangemobile.com/xml/emailcontacts/"
         self.contentType = ""
         self.firstName = "python test"
         self.lastName = "python test"
-        self.phoneNumber = "+12109191320"
+        self.emailAddress = "test@test.com"
         self.apiKey = "8dba905330fa4d5a9b5193c4cedb540c"
         self.headers = {'Content-Type': 'application/xml'}
         self.contactId = 0
 
     def create(self):
-        # http://sunloanapi.dlangemobile.com/xml/contact/8dba905330fa4d5a9b5193c4cedb540c
+        # http://sunloanapi.dlangemobile.com/xml/emailcontacts/8dba905330fa4d5a9b5193c4cedb540c
         endpoint = self.baseEndPoint + self.apiKey
-        root = Element('Contact')
-        phone_number = SubElement(root, 'PhoneNumber')
-        phone_number.text = self.phoneNumber
+        root = Element('EmailContact')
+        phone_number = SubElement(root, 'EmailAddress')
+        phone_number.text = self.emailAddress
         first_name = SubElement(root, 'FirstName')
         first_name.text = self.firstName
         last_name = SubElement(root, 'LastName')
@@ -46,7 +53,8 @@ class Contact(object):
             for elem in tree.iter():
                 if elem.tag == "ErrorMessage":
                     error_msg = elem.text
-                    self.contactId = error_msg.replace('Phone number already exists. ID = ','')
+                    # todo: Fix error message
+                    self.contactId = error_msg.replace('Email address already exists. ID = ','')
             # todo: retrieve info for previous contactid and record to another table, possibly compare lastname?
         else:
             contactLogging.error(response)
@@ -61,6 +69,13 @@ class Contact(object):
         # mysms = SMS()
         # mysms.message = "Hello Chris"
         # mysms.send()
+
+
+
+
+
+
+
 
 
 
