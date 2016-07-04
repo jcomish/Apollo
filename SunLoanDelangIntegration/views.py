@@ -18,7 +18,7 @@ def update(request):
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
         if customer_form.is_valid():
-            customer_id = customer_form.update_and_email(request.POST.get('customer_id'))
+            customer_id = customer_form.update_and_notify(request.POST.get('customer_id'))
             return HttpResponseRedirect('/?customer_id=' + str(customer_id))
         else:
             return render(request, 'base.html', {'form': customer_form})
@@ -181,7 +181,7 @@ def view(request):
     if request.method == 'POST':
         customer_id = request.POST.get('cust_id')
         message_id = request.POST.get('message')
-        services.send_message(customer_id, message_id)
+        services.send_sms_message(customer_id, message_id)
 
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
@@ -211,7 +211,7 @@ def history(request):
     if request.method == 'POST':
         customer_id = request.POST.get('cust_id')
         message_id = request.POST.get('message')
-        services.send_message(customer_id, message_id)
+        services.send_sms_message(customer_id, message_id)
 
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 

@@ -20,7 +20,7 @@ class SMSContact(object):
     def create(self):
         # http://sunloanapi.dlangemobile.com/xml/contact/8dba905330fa4d5a9b5193c4cedb540c
         endpoint = self.baseEndPoint + self.apiKey
-        root = Element('SMSContact')
+        root = Element('Contact')
         phone_number = SubElement(root, 'PhoneNumber')
         phone_number.text = self.phoneNumber
         first_name = SubElement(root, 'FirstName')
@@ -28,8 +28,10 @@ class SMSContact(object):
         last_name = SubElement(root, 'LastName')
         last_name.text = self.lastName
 
+        data = tostring(root)
+
         # Add Try Catch Logic and also input validation for Message and Phone Number
-        response = requests.post(endpoint, data=tostring(root), headers=self.headers)
+        response = requests.post(endpoint, data=data, headers=self.headers)
         status_code = response.status_code
 
         contactLogging.debug(response)

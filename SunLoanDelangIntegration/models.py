@@ -55,6 +55,7 @@ class SentMessages(models.Model):
     delang_message_id = models.IntegerField(null=False) # will log 0 for failures. todo: need monitoring for 0's
     raw_message = models.CharField(max_length=2000)
     message = models.ForeignKey('Message', null=False)
+    message_type = models.ForeignKey('MessageType', default=1)
     date_sent = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=100, default='Attempting')
 
