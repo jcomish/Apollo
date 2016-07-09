@@ -10,7 +10,7 @@ class CustomerForm(ModelForm):
         class Meta:
             model = Customer
             widgets = {'store': forms.HiddenInput(), 'user_id': forms.HiddenInput(), 'account_id': forms.NumberInput()}
-            exclude = ('create_date', 'status', "sms_verification_code", "sms_verification_code",
+            exclude = ('create_date', 'status', "sms_verification_code", "email_verification_code",
                        "delang_sms_contact_id", "delang_email_contact_id", "email_verified", "sms_verified")
             labels = {
                 "notification_setting": _('Notifications:'),
@@ -26,18 +26,7 @@ class CustomerForm(ModelForm):
                 customer.sms_verification_code = services.get_verification_code()
                 customer.email_verification_code = services.get_verification_code()
 
-                message_id = self.data.get('notification_setting')
-
-                # if customer opt-in SMS or both
-                # todo: may change depending on email api delang exposes
-                if int(message_id) == '2':
-                    customer.delang_sms_contact_id = services.create_sms_contact(customer)
-                elif (message_id) == '3':
-                    customer.delang_email_contact_id = services.create_email_contact(customer)
-                elif (message_id) == '4':
-                    customer.delang_sms_contact_id = services.create_sms_contact(customer)
-                    customer.delang_email_contact_id = services.create_email_contact(customer)
-                customer.save()
+                self.contact_evaluation()
 
                 if int(customer.id) > 0 and int(customer.delang_sms_contact_id) > 0:
                     services.send_sms_welcome_message(customer)
@@ -48,6 +37,26 @@ class CustomerForm(ModelForm):
                 return customer.id
             else:
                 return 0
+
+        def contact_evaluation(self):
+
+            customer = self.save(commit=False)
+
+            message_id = self.data.get('notification_setting')
+
+            # if customer opt-in SMS or both
+            # todo: may change depending on email api delang exposes
+            if int(message_id) == '2':
+                customer.delang_sms_contact_id = services.create_sms_contact(customer)
+            elif (message_id) == '3':
+                customer.delang_email_contact_id = services.create_email_contact(customer)
+            elif (message_id) == '4':
+                customer.delang_sms_contact_id = services.create_sms_contact(customer)
+                customer.delang_email_contact_id = services.create_email_contact(customer)
+            customer.save()
+
+            return self
+
 
         def update_and_notify(self, customer_id):
             if self.is_valid():
@@ -61,13 +70,23 @@ class CustomerForm(ModelForm):
                 customer.notification_setting_id = self.data.get('notification_setting')
                 customer.save()
 
-                if int(customer.id) > 0 and int(customer.delang_contact_id) > 0:
+                # Is Contact Registered
+                self.contact_evaluation()
 
+                if int(customer.id) > 0 and int(customer.delang_sms_contact_id) > 0:
                     # check to see if welcome message has been sent
                     try:
-                        SentMessages.objects.get(customer_id=customer.id, message_id=1, delang_message_id__gt=0)
+                        SentMessages.objects.get(customer_id=customer.id, message_id=1, message_type_id=1, delang_message_id__gt=0)
                     except SentMessages.DoesNotExist:
                         services.send_sms_welcome_message(customer)
+
+                if int(customer.id) > 0 and int(customer.delang_email_contact_id) > 0:
+                    # check to see if welcome message has been sent
+                    try:
+                        SentMessages.objects.get(customer_id=customer.id, message_id=1, message_type_id=2, delang_message_id__gt=0)
+                    except SentMessages.DoesNotExist:
+                        services.send_email_welcome_message(customer)
+
 
                 return customer.id
             else:

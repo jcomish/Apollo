@@ -192,7 +192,14 @@ def view(request):
     if request.method == 'POST':
         customer_id = request.POST.get('cust_id')
         message_id = request.POST.get('message')
-        services.send_sms_message(customer_id, message_id)
+        notification_type = request.POST.get('messagetype')
+
+        if notification_type == "SMS":
+            services.send_sms_message(customer_id, message_id)
+
+        if notification_type == "Email":
+            return HttpResponseRedirect("/")
+
 
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
 
