@@ -178,6 +178,17 @@ def view(request):
             customer = e
         context.update({'customer': customer,})
 
+        if customer.notification_setting_id == 2:
+            notification = ["SMS"]
+        elif customer.notification_setting_id == 3:
+            notification = ["Email"]
+        elif customer.notification_setting_id == 4:
+            notification = ["SMS", "Email"]
+        else:
+            notification = ["Opted Out"]
+
+        context.update({'notification': notification})
+
     if request.method == 'POST':
         customer_id = request.POST.get('cust_id')
         message_id = request.POST.get('message')

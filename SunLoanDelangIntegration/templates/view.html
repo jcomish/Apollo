@@ -19,12 +19,12 @@
 
             {% if contract %}
                 {% for item in contract %}
-                <a class="nav-bar" href="../{{ item.path }}" download="Contract.pdf">Notification
-                Opt-In Form</a><br>
+                    <a class="nav-bar" href="../{{ item.path }}" download="Contract.pdf">Notification
+                        Opt-In Form</a><br>
                 {% endfor %}
             {% else %}
                 <a class="btn btn-primary" href="/contract/?customer_id={{ customer.id }}" role="button" id="msg">Generate
-                Opt-In Form</a></br>
+                    Opt-In Form</a></br>
             {% endif %}
 
             {% if customer.status.id > 1 %}
@@ -34,10 +34,16 @@
                    id="hist">View Message
                     History</a></br>
             {% else %}
-                <a class="btn btn-primary" href="/code/?customer_id={{ customer.id }}" role="button" id="msg">Resend Verification Code</a></br>
+                <a class="btn btn-primary" href="/code/?customer_id={{ customer.id }}" role="button" id="msg">Resend
+                    Verification Code</a></br>
                 <form class="form-inline" action="/verify/?customer_id={{ customer.id }}" method="post" id="ver_code">
                     {% csrf_token %}
-                    <input type="text" size="5" placeholder="Code" class="form-control" name="code">
+                    {% if customer.notification_setting_id == 2 or customer.notification_setting_id == 4 %}
+                        <input type="text" size="8" placeholder="SMS Code" class="form-control" name="sms_code">
+                    {% endif %}
+                    {% if customer.notification_setting_id == 3 or customer.notification_setting_id == 4 %}
+                        <input type="text" size="8" placeholder="Email Code" class="form-control" name="email_code">
+                    {% endif %}
                     <input class="btn btn-primary" href="#" id="verify" type="submit"
                            value="Verify Customer">&nbsp;{{ request.GET.validated }}
                 </form>

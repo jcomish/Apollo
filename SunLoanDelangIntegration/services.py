@@ -30,6 +30,7 @@ def create_sms_contact(customer):
 
     return my_contact.contactId
 
+
 def create_email_contact(customer):
     my_contact = emailcontact.EmailContact()
     my_contact.firstName = customer.first_name

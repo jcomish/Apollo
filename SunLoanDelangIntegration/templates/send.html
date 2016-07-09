@@ -10,20 +10,36 @@
                 <strong>Email Address: </strong>{{ customer.email_address }} &nbsp;&nbsp;&nbsp; <strong>Phone
                 Number: </strong>{{ customer.phone_number }}
                 </br>
-                <form class="form-inline" action="/view/?customer_id={{ customer.id }}" method="post">
-                    {% csrf_token %}
-                    </br>
-                    <select name="message" class="form-control">
-                        <option value="">-- Select Notification --</option>
-                        {% for message in notifications %}
-                            <option value="{{ message.id }}">{{ message.name }}</option>
-                        {% endfor %}
-                    </select></br></br>
-                    <input type="hidden" value="{{ customer.id }}" name="cust_id">
-                    <input class="btn btn-primary" id="notify" type="submit" value="Send Notification">
-                    <a class="btn btn-primary" href="/" role="button" id="reload">Cancel</a>
-                </form>
 
+
+
+                {% if customer.notification_setting.id > 1 %}
+                    <form class="form-inline" action="/view/?customer_id={{ customer.id }}" method="post">
+                        {% csrf_token %}
+                        </br>
+                        <select name="message" class="form-control">
+                            <option value="">-- Select Notification --</option>
+                            {% for message in notifications %}
+                                <option value="{{ message.id }}">{{ message.name }}</option>
+                            {% endfor %}
+                        </select>&nbsp; <select name="messagetype" class="form-control">
+                        <option value="">-- Select Notification Method --</option>
+                        {% if customer.notification_setting.id > 0 %}
+                            {% for type in notification %}
+                                <option value="{{ type }}">{{ type }}</option>
+                            {% endfor %}
+
+                        {% endif %}
+                    </select></br></br>
+                        <input type="hidden" value="{{ customer.id }}" name="cust_id">
+                        <input class="btn btn-primary" id="notify" type="submit" value="Send Notification">
+                        <a class="btn btn-primary" href="/" role="button" id="reload">Cancel</a>
+                    </form>
+                {% else %}
+                    <br>
+                    Customer Currently Opted Out of Notifications<br>
+                    <a class="btn btn-primary" href="/" role="button" id="reload">Back</a>
+                {% endif %}
             </div>
             </p>
         </div>

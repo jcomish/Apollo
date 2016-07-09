@@ -10,7 +10,8 @@ class CustomerForm(ModelForm):
         class Meta:
             model = Customer
             widgets = {'store': forms.HiddenInput(), 'user_id': forms.HiddenInput(), 'account_id': forms.NumberInput()}
-            exclude = ('create_date', 'status', 'verification_code', "delang_sms_contact_id", "delang_email_contact_id")
+            exclude = ('create_date', 'status', "sms_verification_code", "sms_verification_code",
+                       "delang_sms_contact_id", "delang_email_contact_id", "email_verified", "sms_verified")
             labels = {
                 "notification_setting": _('Notifications:'),
             }
@@ -20,7 +21,11 @@ class CustomerForm(ModelForm):
 
             if self.is_valid():
                 customer = self.save(commit=False)
-                customer.verification_code = services.get_verification_code()
+
+                # Generate Default Verification Codes
+                customer.sms_verification_code = services.get_verification_code()
+                customer.email_verification_code = services.get_verification_code()
+
                 message_id = self.data.get('notification_setting')
 
                 # if customer opt-in SMS or both
