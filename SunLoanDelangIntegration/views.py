@@ -64,8 +64,19 @@ def index(request):
         # todo: restrict access to storeid from customer object
         customer = Customer.objects.get(pk=request.GET['customer_id'])
         contract = CustomerPDF.objects.filter(customer_id=customer.id).order_by('-create_date')[:1]
+        if (customer.notification_setting_id == 2 or customer.notification_setting_id == 4) and (customer.sms_verified == False):
+            show_sms_code = True
+        else:
+            show_sms_code = False
+
+        if (customer.notification_setting_id == 3 or customer.notification_setting_id == 4) and (customer.email_verified == False):
+            show_email_code = True
+        else:
+            show_email_code = False
+
         context.update({'customer':customer,})
         context.update({'contract': contract,})
+        context.update({'show_sms_code': show_sms_code, 'show_email_code': show_email_code})
 
     if request.method == 'POST':
         customer_form = CustomerForm(request.POST)
@@ -198,7 +209,7 @@ def view(request):
             services.send_sms_message(customer_id, message_id)
 
         if notification_type == "Email":
-            return HttpResponseRedirect("/")
+            services.send_email_message(customer_id, message_id)
 
 
         return HttpResponseRedirect('/?customer_id=' + str(customer_id))
@@ -241,7 +252,9 @@ def history(request):
 def verify(request):
     employee = Employee.objects.get(user_id=request.user.id)
     # store_name = Store.objects.get(pk=employee.store_id)
-    code = request.POST.get('code')
+    sms_code = request.POST.get('sms_code')
+    email_code = request.POST.get('email_code')
+
     is_validated = ''
 
     if request.method == 'POST':
@@ -251,12 +264,35 @@ def verify(request):
             customer_id = request.GET['customer_id']
             try:
                 customer = Customer.objects.get(pk=customer_id)
-                # todo: check to make sure code is numeric or else this is going ot blow up
-                if int(code) == customer.verification_code:
-                    Customer.objects.filter(pk=customer_id).update(status=3)
-                    is_validated = 'Success'
+                # todo: check to make sure code is numeric or else this is going to blow up
+                if not customer.sms_verified:
+                    if int(sms_code) == customer.sms_verification_code:
+                        Customer.objects.filter(pk=customer_id).update(sms_verified=True)
+                        is_sms_validated = True
+                    else:
+                        is_sms_validated = False
                 else:
-                    is_validated = 'Invalid Code. Try Again'
+                    is_sms_validated = True
+
+                if not customer.email_verified:
+                    if int(email_code) == customer.email_verification_code:
+                        Customer.objects.filter(pk=customer_id).update(email_verified=True)
+                        is_email_validated = True
+                    else:
+                        is_email_validated = False
+                else:
+                    is_email_validated = True
+
+                if is_sms_validated == True and is_email_validated == True :
+                     is_validated = 'Success'
+                     Customer.objects.filter(pk=customer_id).update(status=3)
+                elif is_sms_validated == False and is_email_validated == False:
+                     is_validated = "Email and SMS Code are Invalid"
+                elif is_sms_validated == False and is_email_validated == True:
+                    is_validated = 'SMS Code Invalid, Email Code is Valid'
+                elif is_sms_validated == True and is_email_validated == False:
+                    is_validated = 'Email Code Invalid, SMS Code is Valid'
+
 
             except Exception as e:
                 customer = e

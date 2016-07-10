@@ -113,27 +113,27 @@ def send_email_message(customer_id, message_id):
     # todo: Integrate Send Email Message
     customer = Customer.objects.get(pk=customer_id)
     last_message = SentMessages.objects.filter(customer=customer).exclude(delang_message_id=0, message_id = 1).order_by('-date_sent')[:1]
-    offset = datetime.datetime.now()-datetime.timedelta(hours=24)
+    offset = datetime.datetime.now()-datetime.timedelta(hours=.01)
     message = Message.objects.get(pk=message_id)
-    sms_message = sms.SMS()
-    sms_message.contactID = customer.delang_contact_id
+    send_email = email.Email()
+    send_email.contactID = customer.delang_email_contact_id
     # todo: retrieve store api key and phone number
     # todo: retrieve welcome message from model and find and replace
-    sms_message.message = message.verbiage
+    send_email.message = message.verbiage
 
     if last_message:
         for messages in last_message:
             if messages.date_sent.replace(tzinfo=None) < offset:
                     # messageid = 1 for welcome message todo: retrieve welcome message id from DB
-                    log_message(customer, message.id, sms_message, message_type='2') # todo: make a welcome message class abstracted to be the same as email
-                    sms_message.send()
-                    if sms_message.messageId > 0:
-                        log_message(customer, message.id, sms_message, status='Success', message_type='2') # todo: make a welcome message class abstracted to be the same as email
+                    log_message(customer, message.id, send_email, message_type='2') # todo: make a welcome message class abstracted to be the same as email
+                    send_email.send()
+                    if int(send_email.messageId) > 0:
+                        log_message(customer, message.id, send_email, status='Success', message_type='2') # todo: make a welcome message class abstracted to be the same as email
                     else:
-                        log_message(customer, message.id, sms_message, status='Failed', message_type='2') # todo: make a welcome message class abstracted to be the same as email
-                    return sms_message.messageId
+                        log_message(customer, message.id, send_email, status='Failed', message_type='2') # todo: make a welcome message class abstracted to be the same as email
+                    return send_email.messageId
             else:
-                log_message(customer, message.id, sms_message, status='Messaging Limit Reached', message_type='2')  # todo: make a welcome message class abstracted to be the same as email
+                log_message(customer, message.id, send_email, status='Messaging Limit Reached', message_type='2')  # todo: make a welcome message class abstracted to be the same as email
             break
     else:
         return 0
