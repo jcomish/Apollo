@@ -1,0 +1,8 @@
+Django==1.9.6
+Pillow==3.2.0
+XlsxWriter==0.8.9
+pip==7.1.2
+psycopg2==2.6.1
+reportlab==3.3.0
+requests==2.10.0
+setuptools==18.2

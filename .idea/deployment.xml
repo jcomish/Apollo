@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="aws">
+    <serverData>
+      <paths name="aws">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/var/www/apollo" local="$PROJECT_DIR$" web="/var/www/apollo" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
