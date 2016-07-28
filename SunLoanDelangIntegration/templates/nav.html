@@ -30,12 +30,16 @@
 
             {% else %}
                 <p>Welcome, Guest <a href="{% url 'login' %}">[login]</a></p>
+
             {% endif %}
 
 
         </div>
         <div id="navbar" class="navbar-brand navbar-collapse collapse navbar-right">
-            <p>Store: {{ employee.store }} </br>
+            <p>Store: {{ employee.store }} </br></br>
+                 <button type="button" id="feedback-btn" class="btn btn-info vertical-right-aligned">
+                                    Feedback <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+                                </button>
             </p>
         </div><!--/.navbar-collapse -->
     </div>

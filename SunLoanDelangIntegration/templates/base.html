@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../assets/favicon.ico">
+    {% load staticfiles %}
+    <link href="{% static 'tellme/feedback.css' %}" rel="stylesheet">
 
     <title>Sun Loan Notification Manager</title>
 
@@ -21,6 +23,8 @@
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="{% static "ie-emulation-modes-warning.js" %}"></script>
+   <!--  <script src="{% static 'tellme/feedback.min.js' %}"></script> -->
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -62,6 +66,7 @@
     </div>
     <hr>
     <footer>
+
         <p>&copy; Copyright 2016 Sun Loan Company</p>
     </footer>
 </div> <!-- /container -->
@@ -124,6 +129,26 @@
         return vars;
     }
 </script>
+{% comment %}
+<script type="text/javascript">
+    $(function () {
+        $.feedback({
+            ajaxURL: "{% url 'tellme:post_feedback' %}",
+            html2canvasURL: "{% static 'tellme/html2canvas.min.js' %}",
+            feedbackButton: "#feedback-btn",
+            initButtonText: "{% filter escapejs %}{%  include 'tellme/initButtonText.txt' %}{% endfilter %}",
+            postHTML: false,
+            tpl: {
+                description: "{% filter escapejs %}{%  include 'tellme/tpl-description.html' %}{% endfilter %}",
+                highlighter: "{% filter escapejs %}{%  include 'tellme/tpl-highlighter.html' %}{% endfilter %}",
+                overview: "{% filter escapejs %}{%  include 'tellme/tpl-overview.html' %}{% endfilter %}",
+                submitSuccess: "{% filter escapejs %}{%  include 'tellme/tpl-submit-success.html' %}{% endfilter %}",
+                submitError: "{% filter escapejs %}{%  include 'tellme/tpl-submit-error.html' %}{% endfilter %}"
+            },
+            initialBox: true
+        });
+    });
+</script>{% endcomment %}
 </body>
 </html>
 
