@@ -1,10 +1,14 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
 
 class Customer(models.Model):
+    phone_regex = RegexValidator(regex=r'^\d{9,10}$',
+                                 message="Phone number must be entered in the format: '9999999999'. /"
+                                         "Up to 10 digits allowed.")
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=12)
+    phone_number = models.CharField(max_length=12,validators=[phone_regex], blank=True)
     # todo: split phonenumber up into area code and number then concatenate with +1 when SMS
     # todo: timezone to CST - maybe base off browser due to stores locations
     email_address = models.EmailField()
@@ -13,12 +17,25 @@ class Customer(models.Model):
     status = models.ForeignKey('Status', default=1)
     user_id = models.IntegerField(default=0)
     notification_setting = models.ForeignKey('NotificationSetting', default=1)
-    verification_code = models.IntegerField(default=0)
-    delang_contact_id = models.IntegerField(default=0)
+    sms_verification_code = models.IntegerField(default=0)
+    email_verification_code = models.IntegerField(default=0)
+    email_verified = models.BooleanField(default=False)
+    sms_verified = models.BooleanField(default=False)
+    delang_sms_contact_id = models.IntegerField(default=0)
+    delang_email_contact_id = models.IntegerField(default=0)
     create_date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.first_name, self.last_name, self.email_address
+
+
+class CustomerPDF(models.Model):
+    customer_id = models.ForeignKey('Customer')
+    path = models.CharField(max_length=500)
+    create_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.customer_id, self.path
 
 
 class Message(models.Model):
@@ -41,7 +58,9 @@ class SentMessages(models.Model):
     delang_message_id = models.IntegerField(null=False) # will log 0 for failures. todo: need monitoring for 0's
     raw_message = models.CharField(max_length=2000)
     message = models.ForeignKey('Message', null=False)
-    date_sent = models.DateField(auto_now_add=True)
+    message_type = models.ForeignKey('MessageType', default=1)
+    date_sent = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=100, default='Attempting')
 
     def __self__(self):
         return self.customer, self.message

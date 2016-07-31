@@ -1,7 +1,7 @@
 # Apollo
 Notification Manger
 
-Dependencies: Django, requests, psycopg2, Python 3.5.1
+Dependencies: Django, requests, psycopg2, Python 3.5.1, reportlab
 
 Once Downloaded and dependencies installed:
 

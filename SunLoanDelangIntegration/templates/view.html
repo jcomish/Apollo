@@ -16,15 +16,36 @@
             </p>
         </div>
         <div class="col-md-6">
+
+            {% if contract %}
+                {% for item in contract %}
+                    <a class="nav-bar" href="../{{ item.path }}" download="Contract.pdf">Notification
+                        Opt-In Form</a><br>
+                {% endfor %}
+            {% else %}
+                <a class="btn btn-primary" href="/contract/?customer_id={{ customer.id }}" role="button" id="msg">Generate
+                    Opt-In Form</a></br>
+            {% endif %}
+
             {% if customer.status.id > 1 %}
                 <a class="btn btn-primary" href="/view/?customer_id={{ customer.id }}" role="button" id="msg">Message
                     Customer</a></br>
+                <a class="btn btn-primary" href="/history/?customer_id={{ customer.id }}&history=true" role="button"
+                   id="hist">View Message
+                    History</a></br>
             {% else %}
+                <a class="btn btn-primary" href="/code/?customer_id={{ customer.id }}" role="button" id="msg">Resend
+                    Verification Code</a></br>
                 <form class="form-inline" action="/verify/?customer_id={{ customer.id }}" method="post" id="ver_code">
                     {% csrf_token %}
-                    <input type="text" size="5" placeholder="Code" class="form-control" name="code">
+                        {% if show_sms_code == True %}
+                        <input type="text" size="8" placeholder="SMS Code" class="form-control" name="sms_code">
+                    {% endif %}
+                    {% if show_email_code == True %}
+                        <input type="text" size="8" placeholder="Email Code" class="form-control" name="email_code">
+                    {% endif %}
                     <input class="btn btn-primary" href="#" id="verify" type="submit"
-                           value="Verify Customer">&nbsp;{{ request.GET.validated }}
+                           value="Verify Customer"><br><font color="red">{{ request.GET.validated }}</font>
                 </form>
             {% endif %}
             <a class="btn btn-primary" href="/" role="button" id="reload">Cancel &raquo;</a>
