@@ -8,7 +8,10 @@
                 <span class="icon-bar"></span>
             </button>
             {% if user.is_authenticated %}
-                <a href="/"><p class="navbar-brand">Welcome, {{ user.username }}</a>&nbsp;&nbsp;
+                <a href="/">
+                    <p class="navbar-brand">Welcome, {{ user.username }}</a>&nbsp;&nbsp;
+                <a href="/admin/password_change/">
+                    <i class="fa fa-key" aria-hidden="true" title="Change Password"></i> </a>&nbsp;&nbsp;
                 <a href="accounts/logout/"><i class="fa fa-sign-out" aria-hidden="true" title="Log Out"></i></a>
 
 
@@ -37,9 +40,11 @@
         </div>
         <div id="navbar" class="navbar-brand navbar-collapse collapse navbar-right">
             <p>Store: {{ employee.store }} </br></br>
-                 <a href="/admin/bugtracker/ticket/add/"> <i class="fa fa-bug" aria-hidden="true" title="Report Bug or New Feature"></i></a>&nbsp;&nbsp;
-                    <a href="/admin/bugtracker/ticket/"><i class="fa fa-list" aria-hidden="true" title="View Bugs/Features List"></i>
-</a>
+                <a href="/admin/bugtracker/ticket/add/"> <i class="fa fa-bug" aria-hidden="true"
+                                                            title="Report Bug or New Feature"></i></a>&nbsp;&nbsp;
+                <a href="/admin/bugtracker/ticket/"><i class="fa fa-list" aria-hidden="true"
+                                                       title="View Bugs/Features List"></i>
+                </a>
 
             </p>
         </div><!--/.navbar-collapse -->
