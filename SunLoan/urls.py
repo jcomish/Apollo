@@ -18,7 +18,6 @@ from django.contrib import admin
 
 
 urlpatterns = [
-    #url(r'^tellme$', include("tellme.urls")),
     url(r'^test/', include('DelangIntegrationTest.urls')),
     url(r'^user/', include('UserProfile.urls')),
     url(r'^data/', include('DataImport.urls')),
